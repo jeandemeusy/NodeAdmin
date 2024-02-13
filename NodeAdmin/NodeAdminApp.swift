@@ -9,6 +9,15 @@ import SwiftUI
 
 @main
 struct NodeAdminApp: App {
+    @StateObject var aliasesVM = AliasesVM()
+    @StateObject var accountVM = AccountVM()
+    @StateObject var channelsVM = ChannelsVM()
+    @StateObject var nodeVM = NodeVM()
+    @StateObject var ticketsVM = TicketsVM()
+    
+    @AppStorage("host") private var host = ""
+    @AppStorage("token") private var token = ""
+    
     init() {
         let largeMenuUifont = UIFont.monospacedSystemFont(ofSize: 36, weight: .bold)
         let smallMenuUifont = UIFont.monospacedSystemFont(ofSize: 18, weight: .bold)
@@ -16,7 +25,7 @@ struct NodeAdminApp: App {
 
         UINavigationBar.appearance().largeTitleTextAttributes = [
             .font : largeMenuUifont,
-            .foregroundColor: UIColor(.darkBlueHOPR)
+            .foregroundColor: UIColor(.darkBlueHOPR),
         ]
         UINavigationBar.appearance().titleTextAttributes =  [
             .font : smallMenuUifont,
@@ -30,6 +39,19 @@ struct NodeAdminApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(aliasesVM)
+                .environmentObject(accountVM)
+                .environmentObject(channelsVM)
+                .environmentObject(nodeVM)
+                .environmentObject(ticketsVM)
+                .onAppear {
+                    aliasesVM.getAll()
+                    accountVM.getAll()
+                    channelsVM.getAll()
+                    nodeVM.getAll()
+                    ticketsVM.getAll()
+                }
         }
+        
     }
 }

@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct PeersView: View {
-    @StateObject var aliasesVM = AliasesVM()
-    @StateObject var channelsVM = ChannelsVM()
-    @StateObject var nodeVM = NodeVM()
+    @EnvironmentObject var aliasesVM: AliasesVM
+    @EnvironmentObject var channelsVM: ChannelsVM
+    @EnvironmentObject var nodeVM: NodeVM
+    
     @State private var searchText = ""
-    @AppStorage("host") private var host = ""
-    @AppStorage("token") private var token = ""
 
     var body: some View {
         NavigationStack {
@@ -27,7 +26,7 @@ struct PeersView: View {
                     SectionTitle("With outgoing channel")
                     ForEach(peersWithChannels, id: \.peerId) { peer in
                         NavigationLink {
-                            PeerDetailView(peer: peer)
+                            PeerDetailView(peer: peer, hasOutChannel: true)
                         } label: {
                             PeerItemView(peer: peer, hasOutChannel: true)
                         }
@@ -38,7 +37,7 @@ struct PeersView: View {
                         NavigationLink {
                             PeerDetailView(peer: peer)
                         } label: {
-                            PeerItemView(peer: peer, hasOutChannel: false)
+                            PeerItemView(peer: peer)
                         }
                     }
                 }
@@ -46,13 +45,15 @@ struct PeersView: View {
             }
             .navigationTitle("Peers")
         }
+        .refreshable { await reload() }
         .searchable(text: $searchText, prompt: "Search by alias, peerId, or address")
         .textInputAutocapitalization(.never)
-        .onAppear {
-            aliasesVM.getAliases(for: host, key: token)
-            channelsVM.getChannels(for: host, key: token)
-            nodeVM.getPeers(for: host, key: token)
-        }
+    }
+    
+    func reload() async {
+        aliasesVM.getAll()
+        channelsVM.getAll()
+        nodeVM.getAll()
     }
     
     var peersWithChannels: [NodePeer] {
@@ -62,7 +63,7 @@ struct PeersView: View {
                 channelsVM.linkedAddresses.contains($0.peerAddress)
             }
         }
-        
+                
         var output: [NodePeer] = []
         /// keys and values are inverted (it's alias -> peer_id)
         if let aliases = aliasesVM.aliases {
@@ -113,4 +114,7 @@ struct PeersView: View {
 
 #Preview {
     PeersView()
+        .environmentObject(AliasesVM())
+        .environmentObject(ChannelsVM())
+        .environmentObject(NodeVM())
 }

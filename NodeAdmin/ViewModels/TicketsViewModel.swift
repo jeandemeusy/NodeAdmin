@@ -10,10 +10,24 @@ import Foundation
 class TicketsVM: ObservableObject {
     @Published var statistics: TicketsStatistics? = nil
     
-    func getAll(for host: String, key: String) { }
+    func host() -> String {
+        return  UserDefaults.standard.string(forKey: "host") ?? ""
+    }
     
-    func getStatistics(for host: String, key: String) {
-        TicketsStore.shared.GET_statistics(for: host, key: key) { result in
+    func key() -> String {
+        return  UserDefaults.standard.string(forKey: "token") ?? ""
+    }
+    
+    func getAll() {
+        self.getStatistics()
+    }
+    
+    func resetAll() {
+        self.statistics = nil
+    }
+    
+    func getStatistics() {
+        TicketsStore.shared.GET_statistics(for: host(), key: key()) { result in
             switch result {
             case .success(let response):
                 self.statistics = response

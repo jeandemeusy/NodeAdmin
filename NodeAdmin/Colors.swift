@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UIKit
 
 extension Color {
     init(red: Int, green: Int, blue: Int) {
@@ -22,12 +23,46 @@ extension Color {
             opacity: alpha
         )
     }
+    
+    init(light: Color, dark: Color) {
+        self.init(light: UIColor(light), dark: UIColor(dark))
+    }
+
+    init(light: UIColor, dark: UIColor) {
+        self.init(uiColor: UIColor(dynamicProvider: { traits in
+            switch traits.userInterfaceStyle {
+            case .light, .unspecified:
+                return light
+
+            case .dark:
+                return dark
+
+            @unknown default:
+                assertionFailure("Unknown userInterfaceStyle: \(traits.userInterfaceStyle)")
+                return light
+            }
+        }))
+    }
 }
     
 extension ShapeStyle where Self == Color {
-    static var brightBlueHOPR: Color { Color(hex: 0x0000b4) }
-    static var skyBlueHOPR: Color { Color(hex: 0xb4f0ff) }
-    static var steelBlueHOPR: Color { Color(hex: 0x3c64a5) }
-    static var darkBlueHOPR: Color { Color(hex: 0x000050) }
-    static var yellowHOPR: Color { Color(hex: 0xffffa0) }
+    static var _darkBlueHOPR: Color { Color(hex: 0x000050) }
+    static var _brightBlueHOPR: Color { Color(hex: 0x0000b4) }
+    static var _skyBlueHOPR: Color { Color(hex: 0xb4f0ff) }
+    static var _steelBlueHOPR: Color { Color(hex: 0x3c64a5) }
+    static var _yellowHOPR: Color { Color(hex: 0xffffa0) }
+    static var _darkgray: Color { Color(white: 0.2) }
+    static var _lightgray: Color { Color(white: 0.9) }
+
+    static var grey: Color { Color(light: ._darkgray, dark: ._lightgray)}
+    static var darkBlueHOPR: Color { Color(light: ._darkBlueHOPR, dark: Color(white: 0.9)) }
+    static var brightBlueHOPR: Color { Color(light: ._brightBlueHOPR, dark: ._skyBlueHOPR) }
+    static var skyBlueHOPR: Color { Color(light: ._skyBlueHOPR, dark: ._steelBlueHOPR) }
+    static var steelBlueHOPR: Color { Color(light: ._steelBlueHOPR, dark: ._steelBlueHOPR) }
+    static var yellowHOPR: Color { Color(light: ._yellowHOPR, dark: ._yellowHOPR) }
+
+}
+
+extension ShapeStyle where Self == LinearGradient {
+    static var gradientHOPR: LinearGradient { LinearGradient(colors: [._brightBlueHOPR, ._darkBlueHOPR], startPoint: .bottom, endPoint: .top) }
 }

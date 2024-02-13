@@ -9,49 +9,20 @@ import SwiftUI
 
 struct SectionTitle: View {
     let title: String
-    
+
     init(_ title: String) {
         self.title = title
     }
     
     var body: some View {
-        Text(title)
-            .monospaced()
-            .font(.caption)
-            .foregroundStyle(.secondary)
-            .padding(.top)
-    }
-}
-struct ListItem: View {
-    var name: String
-    var content: String?
-    
-    init(name: String, value: Int?) {
-        self.name = name
-        self.content = String(describing: value)
-    }
-    init(name: String, value: Double?) {
-        self.name = name
-        self.content = String(describing: value)
-    }
-    init(name: String, content: String?) {
-        self.name = name
-        self.content = content
-    }
-    
-    var body: some View {
         HStack {
-            Text(name)
-                .fontWeight(.semibold)
-                .lineLimit(1)
+            Text(title)
+                .monospaced()
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.top)
             Spacer()
-            Text(content ?? "-")
-            .monospaced(true)
-            .lineLimit(1)
-            .minimumScaleFactor(0.25)
         }
-        .font(.footnote)
-        .foregroundStyle(Color(white: 0.2))
     }
 }
 
@@ -94,7 +65,7 @@ struct LightBlueTile: View {
                     .font(.headline.weight(.medium))
                     .lineLimit(1)
             }
-            .foregroundStyle(Color(white: 0.2))
+            .foregroundStyle(.grey)
         }
         .monospaced()
         .lightBluePanel
@@ -103,14 +74,14 @@ struct LightBlueTile: View {
 }
 
 struct HomeView: View {
-    @StateObject var accountVM = AccountVM()
-    @StateObject var channelsVM = ChannelsVM()
-    @StateObject var nodeVM = NodeVM()
-    @StateObject var ticketsVM = TicketsVM()
+    @EnvironmentObject var aliasesVM: AliasesVM
+    @EnvironmentObject var accountVM: AccountVM
+    @EnvironmentObject var channelsVM: ChannelsVM
+    @EnvironmentObject var nodeVM: NodeVM
+    @EnvironmentObject var ticketsVM: TicketsVM
     
     @AppStorage("host") private var host = ""
-    @AppStorage("token") private var token = ""
-        
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -125,7 +96,7 @@ struct HomeView: View {
                         VStack(alignment: .leading) {
                             Text(host)
                                 .lineLimit(1)
-                                .foregroundStyle(Color(white: 0.2))
+                                .foregroundStyle(.grey)
                             Divider()
                             
                             Text("version: \(nodeVM.version?.version ?? "-")")
@@ -135,7 +106,7 @@ struct HomeView: View {
                             Divider()
                             
                             Text("status: ") + Text(nodeVM.info?.connectivityStatus ?? "-")
-                                .foregroundStyle(nodeVM.info?.statusColor ?? Color(white: 0.2))
+                                .foregroundStyle(nodeVM.info?.statusColor ?? .grey)
                                 .fontWeight(.bold)
                             
                         }
@@ -146,6 +117,8 @@ struct HomeView: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(.darkBlueHOPR, lineWidth: 1)
                     )
+                    .padding(.top)
+                    .padding(.bottom, 5)
                     
                     Group {
                         Text("id: \(accountVM.addresses?.hopr ?? "-")")
@@ -187,16 +160,24 @@ struct HomeView: View {
                 .padding(.horizontal, 10)
             }
             .navigationTitle("Home")
+            .refreshable { await reload() }
         }
-        .onAppear {
-            accountVM.getAll(for: host, key: token)
-            channelsVM.getAll(for: host, key: token)
-            nodeVM.getAll(for: host, key: token)
-            ticketsVM.getStatistics(for: host, key: token)
-        }
+    }
+    
+    func reload() async {
+        aliasesVM.getAll()
+        accountVM.getAll()
+        channelsVM.getAll()
+        nodeVM.getAll()
+        ticketsVM.getAll()
     }
 }
 
 #Preview {
     HomeView()
+        .environmentObject(AliasesVM())
+        .environmentObject(AccountVM())
+        .environmentObject(ChannelsVM())
+        .environmentObject(NodeVM())
+        .environmentObject(TicketsVM())
 }

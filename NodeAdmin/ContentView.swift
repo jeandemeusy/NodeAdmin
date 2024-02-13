@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var aliasesVM: AliasesVM
+    @EnvironmentObject var accountVM: AccountVM
+    @EnvironmentObject var channelsVM: ChannelsVM
+    @EnvironmentObject var nodeVM: NodeVM
+    @EnvironmentObject var ticketsVM: TicketsVM
+    
     @State var selection = 0
     var body: some View {
         TabView(selection: $selection) {
@@ -32,6 +38,11 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(AliasesVM())
+        .environmentObject(AccountVM())
+        .environmentObject(ChannelsVM())
+        .environmentObject(NodeVM())
+        .environmentObject(TicketsVM())
 }
 
 

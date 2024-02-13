@@ -9,21 +9,21 @@ import SwiftUI
 
 struct PeerItemView: View {
     let peer: NodePeer
-    let hasOutChannel: Bool
+    var hasOutChannel: Bool = false
     
     var body: some View {
         HStack {
             Image(systemName: "arrow.down.left.arrow.up.right")
                 .bold()
                 .symbolRenderingMode(.palette)
-                .foregroundStyle(Color(white:0.2).opacity(0.2), hasOutChannel ? .green:Color(white: 0.2).opacity(0.2))
+                .foregroundStyle(.grey.opacity(0.2), hasOutChannel ? .green:.grey.opacity(0.2))
             
             VStack(alignment: .leading) {
                 Text(peer.displayName)
-                    .foregroundStyle(Color(white: 0.2))
+                    .foregroundStyle(.grey)
                     .fontWeight(.semibold)
                 Text(peer.peerAddress)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.grey.opacity(0.8))
                     .font(.custom("addresses", size: 8, relativeTo: .footnote))
             }
             Spacer()

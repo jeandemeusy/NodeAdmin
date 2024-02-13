@@ -37,7 +37,7 @@ struct LightBluePanelView: ViewModifier {
             .padding(.vertical, 10)
             .background(.skyBlueHOPR)
             .clipShape(.rect(cornerRadius: CGFloat(10)))
-            .foregroundStyle(Color(white: 0.2))
+            .foregroundStyle(.grey)
             .monospaced()
     }
 }

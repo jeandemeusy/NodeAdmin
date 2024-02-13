@@ -11,12 +11,25 @@ class ChannelsVM: ObservableObject {
     @Published var channels: Channels? = nil
     @Published var linkedAddresses: [String] = []
     
-    func getAll(for host: String, key: String) {
-        self.getChannels(for: host, key: key)
+    func host() -> String {
+        return  UserDefaults.standard.string(forKey: "host") ?? ""
     }
     
-    func getChannels(for host: String, key: String) {
-        ChannelsStore.shared.GET_channels(for: host, key: key) { result in
+    func key() -> String {
+        return  UserDefaults.standard.string(forKey: "token") ?? ""
+    }
+    
+    func getAll() {
+        self.getChannels()
+    }
+    
+    func resetAll() {
+        self.channels = nil
+        self.linkedAddresses = []
+    }
+    
+    func getChannels() {
+        ChannelsStore.shared.GET_channels(for: host(), key: key()) { result in
             switch result {
             case .success(let response):
                 self.channels = response
@@ -26,4 +39,18 @@ class ChannelsVM: ObservableObject {
             }
         }
     }
+    
+    func postChannel(address: String, amount: Double) {
+        ChannelsStore.shared.POST_channel(for: host(), key: key(), address: address, amount: amount) { result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+
+    }
+    
+    
 }

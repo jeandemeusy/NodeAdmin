@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct ChannelsView: View {
-    @StateObject var aliasesVM = AliasesVM()
-    @StateObject var channelsVM = ChannelsVM()
-    @StateObject var nodeVM = NodeVM()
-    @AppStorage("host") private var host = ""
-    @AppStorage("token") private var token = ""
-
+    @EnvironmentObject var aliasesVM: AliasesVM
+    @EnvironmentObject var channelsVM: ChannelsVM
+    @EnvironmentObject var nodeVM: NodeVM
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -37,13 +35,15 @@ struct ChannelsView: View {
                 }
                 .padding(.horizontal, 10)
             }
+            .refreshable { await reload() }
             .navigationTitle("Channels")
         }
-        .onAppear {
-            aliasesVM.getAliases(for: host, key: token)
-            channelsVM.getChannels(for: host, key: token)
-            nodeVM.getPeers(for: host, key: token)
-        }
+    }
+    
+    func reload() async {
+        aliasesVM.getAll()
+        channelsVM.getAll()
+        nodeVM.getAll()
     }
     
     var outgoingChannels: [Channel] {
@@ -102,4 +102,7 @@ struct ChannelsView: View {
 
 #Preview {
     ChannelsView()
+        .environmentObject(AliasesVM())
+        .environmentObject(ChannelsVM())
+        .environmentObject(NodeVM())
 }

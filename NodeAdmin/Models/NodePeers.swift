@@ -35,13 +35,14 @@ struct NodePeer: Codable {
     let isNew: Bool
     let version: String
     var alias: String?
+    var channel: String?
     
     enum CodingKeys: String, CodingKey {
         case peerId, peerAddress, multiAddr, heartbeats
         case lastSeenInt = "lastSeen"
         case quality, backoff, isNew
         case version = "reportedVersion"
-        case alias
+        case alias, channel
     }
     
     var shortPeerId: String {

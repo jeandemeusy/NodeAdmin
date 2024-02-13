@@ -32,6 +32,7 @@
 		229E00D32B7855CE00C8943B /* TicketsStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00D22B7855CE00C8943B /* TicketsStatistics.swift */; };
 		229E00D52B78566B00C8943B /* TicketsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00D42B78566B00C8943B /* TicketsStore.swift */; };
 		229E00D72B7856E500C8943B /* TicketsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00D62B7856E500C8943B /* TicketsViewModel.swift */; };
+		22EDF3262B7BA61A0068DD43 /* ChannelsPostChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EDF3252B7BA61A0068DD43 /* ChannelsPostChannel.swift */; };
 		22EF92242B7820A500322F94 /* NodeAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92232B7820A500322F94 /* NodeAdminApp.swift */; };
 		22EF92262B7820A500322F94 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92252B7820A500322F94 /* ContentView.swift */; };
 		22EF92282B7820A600322F94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22EF92272B7820A600322F94 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		229E00D22B7855CE00C8943B /* TicketsStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsStatistics.swift; sourceTree = "<group>"; };
 		229E00D42B78566B00C8943B /* TicketsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsStore.swift; sourceTree = "<group>"; };
 		229E00D62B7856E500C8943B /* TicketsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsViewModel.swift; sourceTree = "<group>"; };
+		22EDF3252B7BA61A0068DD43 /* ChannelsPostChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsPostChannel.swift; sourceTree = "<group>"; };
 		22EF92202B7820A500322F94 /* NodeAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NodeAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EF92232B7820A500322F94 /* NodeAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeAdminApp.swift; sourceTree = "<group>"; };
 		22EF92252B7820A500322F94 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				22EF92382B78242200322F94 /* AccountAddresses.swift */,
 				229E00C12B78357E00C8943B /* AccountBalances.swift */,
 				22665BDB2B78D1470068F83E /* Channels.swift */,
+				22EDF3252B7BA61A0068DD43 /* ChannelsPostChannel.swift */,
 				229E00C72B78432F00C8943B /* NodeVersion.swift */,
 				229E00CB2B784C5E00C8943B /* NodePeers.swift */,
 				229E00D02B78522400C8943B /* NodeInfo.swift */,
@@ -302,6 +305,7 @@
 				229E00D72B7856E500C8943B /* TicketsViewModel.swift in Sources */,
 				22EF92262B7820A500322F94 /* ContentView.swift in Sources */,
 				229E00C42B78411A00C8943B /* Modifiers.swift in Sources */,
+				22EDF3262B7BA61A0068DD43 /* ChannelsPostChannel.swift in Sources */,
 				229E00CF2B784DED00C8943B /* PeersView.swift in Sources */,
 				229E00CC2B784C5E00C8943B /* NodePeers.swift in Sources */,
 				229E00D32B7855CE00C8943B /* TicketsStatistics.swift in Sources */,
@@ -456,7 +460,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"NodeAdmin/Preview Content\"";
 				DEVELOPMENT_TEAM = 2CS9SQ5H88;
 				ENABLE_PREVIEWS = YES;
@@ -490,7 +494,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"NodeAdmin/Preview Content\"";
 				DEVELOPMENT_TEAM = 2CS9SQ5H88;
 				ENABLE_PREVIEWS = YES;

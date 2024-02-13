@@ -17,14 +17,31 @@ class NodeVM: ObservableObject {
     @Published var pingResultAccessible: Bool = false
     @Published var pingResultFailed: Bool = false
     
-    
-    func getAll(for host: String, key: String) {
-        self.getVersion(for: host, key: key)
-        self.getInfo(for: host, key: key)
+    func host() -> String {
+        return  UserDefaults.standard.string(forKey: "host") ?? ""
     }
     
-    func getVersion(for host: String, key: String) {
-        NodeStore.shared.GET_version(for: host, key: key) { result in
+    func key() -> String {
+        return  UserDefaults.standard.string(forKey: "token") ?? ""
+    }
+    
+    func getAll() {
+        self.getPeers()
+        self.getVersion()
+        self.getInfo()
+    }
+    
+    func resetAll() {
+        self.version = nil
+        self.peers = nil
+        self.info = nil
+        self.pingResult = nil
+        self.pingResultAccessible = false
+        self.pingResultFailed = false
+    }
+    
+    func getVersion() {
+        NodeStore.shared.GET_version(for: host(), key: key()) { result in
             switch result {
             case .success(let response):
                 self.version = response
@@ -34,8 +51,8 @@ class NodeVM: ObservableObject {
         }
     }
     
-    func getPeers(for host: String, key: String) {
-        NodeStore.shared.GET_peers(for: host, key: key) { result in
+    func getPeers() {
+        NodeStore.shared.GET_peers(for: host(), key: key()) { result in
             switch result {
             case .success(let response):
                 self.peers = response
@@ -45,8 +62,8 @@ class NodeVM: ObservableObject {
         }
     }
     
-    func getInfo(for host: String, key: String) {
-        NodeStore.shared.GET_info(for: host, key: key) { result in
+    func getInfo() {
+        NodeStore.shared.GET_info(for: host(), key: key()) { result in
             switch result {
             case .success(let response):
                 self.info = response
@@ -56,8 +73,8 @@ class NodeVM: ObservableObject {
         }
     }
     
-    func pingPeer(for host: String, key: String, to: String) {
-        PeersStore.shared.POST_ping(for: host, key: key, to: to) { result in
+    func pingPeer(to: String) {
+        PeersStore.shared.POST_ping(for: host(), key: key(), to: to) { result in
             switch result {
             case .success(let response):
                 self.pingResult = response
