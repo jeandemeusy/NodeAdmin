@@ -76,7 +76,7 @@ struct PeerDetailView: View {
                 }
                 
                 HStack {
-                    PeerActionButton(image: "dot.radiowaves.up.forward", text: "Ping") {
+                    PeerActionButton(image: "dot.radiowaves.up.forward", text: "Ping"      ) {
                         nodeVM.pingPeer(for: host, key: token, to: peer.peerId)
                     }
                     PeerActionButton(image: "custom.person.text.rectangle.fill.badge.plus", text: "Add alias", verticalOffset: 1.5)

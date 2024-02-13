@@ -31,7 +31,7 @@ struct AccountBalances: Codable {
     }
     
     var safeNative: Wei {
-        Wei(_value: weiSafeNative, unit: "wxHOPR")
+        Wei(_value: weiSafeNative, unit: "xDai")
     }
     
     var safeHopr: Wei {
