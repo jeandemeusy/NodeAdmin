@@ -44,7 +44,7 @@ struct Channel: Codable {
     }
     
     var balance: Wei {
-        Wei(_value: weiBalance, unit: "wxHOPR")
+        Wei(weiBalance, unit: "wxHOPR")
     }
     
     var direction: String {

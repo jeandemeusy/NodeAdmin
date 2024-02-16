@@ -19,11 +19,14 @@ struct ChannelItemView: View {
             VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("\(channel.directionPrefix) \(channel.displayName)")
-                            .fontWeight(.semibold)
+                        HStack(spacing: 5) {
+                            Text(channel.directionPrefix)
+                            Text(channel.displayName)
+                                .fontWeight(.semibold)
+                        }
+                        .font(.caption)
                         Text("id: \(channel.id)")
-                            .lineLimit(1)
-                            .foregroundStyle(.secondary)
+                            .minimumScaleFactor(0.2)
                     }
                     Spacer()
                 }
@@ -36,8 +39,8 @@ struct ChannelItemView: View {
         }
         .lightBluePanel
         .font(.footnote)
-        .minimumScaleFactor(0.2)
         .lineLimit(1)
+        .minimumScaleFactor(0.2)
     }
 }
 

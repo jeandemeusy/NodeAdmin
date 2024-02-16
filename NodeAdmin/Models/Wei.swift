@@ -11,6 +11,11 @@ struct Wei {
     let _value: String
     let unit: String
     
+    init(_ _value: String, unit: String) {
+        self._value = _value
+        self.unit = unit
+    }
+    
     var reduced: Double {
         return Double(_value)! / 1e18
     }

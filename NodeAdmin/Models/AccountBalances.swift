@@ -23,22 +23,22 @@ struct AccountBalances: Codable {
     }
     
     var native: Wei {
-        return Wei(_value: weiNative, unit: "xDai")
+        return Wei(weiNative, unit: "xDai")
     }
     
     var hopr: Wei {
-        Wei(_value: weiHopr, unit: "wxHOPR")
+        Wei(weiHopr, unit: "wxHOPR")
     }
     
     var safeNative: Wei {
-        Wei(_value: weiSafeNative, unit: "xDai")
+        Wei(weiSafeNative, unit: "xDai")
     }
     
     var safeHopr: Wei {
-        Wei(_value: weiSafeHopr, unit: "wxHOPR")
+        Wei(weiSafeHopr, unit: "wxHOPR")
     }
     
     var safeHoprAllowance: Wei {
-        Wei(_value: weiSafeHoprAllowance, unit: "wxHOPR")
+        Wei(weiSafeHoprAllowance, unit: "wxHOPR")
     }
 }

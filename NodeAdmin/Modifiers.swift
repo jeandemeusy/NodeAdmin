@@ -11,8 +11,12 @@ import SwiftUI
 
 
 extension View {
-    var center: some View {
-        modifier(CenterView())
+    var hcenter: some View {
+        modifier(HCenterView())
+    }
+    
+    var vcenter: some View {
+        modifier(VCenterView())
     }
     
     var lightBluePanel: some View {
@@ -20,7 +24,20 @@ extension View {
     }
 }
 
-struct CenterView: ViewModifier {
+extension ButtonStyle where Self == HOPRButtonStyle {
+    static var hopr: Self {
+        return .init()
+    }
+}
+
+extension ButtonStyle where Self == DismissButtonStyle {
+    static var dismiss: Self {
+        return .init()
+    }
+}
+
+
+struct HCenterView: ViewModifier {
     func body(content: Content) -> some View {
         HStack {
             Spacer()
@@ -29,6 +46,18 @@ struct CenterView: ViewModifier {
         }
     }
 }
+
+
+struct VCenterView: ViewModifier {
+    func body(content: Content) -> some View {
+        VStack {
+            Spacer()
+            content
+            Spacer()
+        }
+    }
+}
+
 
 struct LightBluePanelView: ViewModifier {
     func body(content: Content) -> some View {
@@ -39,6 +68,62 @@ struct LightBluePanelView: ViewModifier {
             .clipShape(.rect(cornerRadius: CGFloat(10)))
             .foregroundStyle(.grey)
             .monospaced()
+    }
+}
+
+struct HOPRButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Button(configuration: configuration)
+    }
+    
+    struct Button: View {
+        let configuration: ButtonStyle.Configuration
+        @Environment(\.isEnabled) private var isEnabled: Bool
+        var body: some View {
+            configuration.label
+                .font(.footnote.weight(.semibold))
+                .padding(.vertical, 10)
+                .padding(.horizontal)
+                .frame(maxHeight: 50)
+                .monospaced()
+                .foregroundStyle(isEnabled ? .white:.gray)
+                .background(.gradientHOPR.opacity(isEnabled ? 1:0))
+                .clipShape(
+                    .capsule(style: .continuous)
+                )
+                .overlay {
+                    Capsule()
+                        .stroke(.gray, lineWidth: 1)
+                        .opacity(isEnabled ? 0:1)
+                }
+        }
+    }
+}
+
+struct DismissButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Button(configuration: configuration)
+    }
+    
+    struct Button: View {
+        let configuration: ButtonStyle.Configuration
+        @Environment(\.isEnabled) private var isEnabled: Bool
+        var body: some View {
+            configuration.label
+                .font(.footnote.weight(.semibold))
+                .padding(.vertical, 10)
+                .padding(.horizontal)
+                .frame(maxHeight: 50)
+                .monospaced()
+                .foregroundStyle(.red)
+                .clipShape(
+                    .capsule(style: .continuous)
+                )
+                .overlay {
+                    Capsule()
+                        .stroke(.red, lineWidth: 1)
+                }
+        }
     }
 }
 

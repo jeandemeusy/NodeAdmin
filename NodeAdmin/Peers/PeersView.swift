@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct PeersView: View {
-    @EnvironmentObject var aliasesVM: AliasesVM
-    @EnvironmentObject var channelsVM: ChannelsVM
-    @EnvironmentObject var nodeVM: NodeVM
+    @EnvironmentObject var apiVM: APIVM
+
     
     @State private var searchText = ""
+    @State private var showAliasesSheet: Bool = false
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing:4) {
                     HStack {
-                        LightBlueTile(text: "Connected", value: nodeVM.peers?.numConnected)
-                        LightBlueTile(text: "Announced", value: nodeVM.peers?.numAnnounced)
+                        LightBlueTile(text: "Connected", value: apiVM.peers?.numConnected)
+                        LightBlueTile(text: "Announced", value: apiVM.peers?.numAnnounced)
                     }
 
                     SectionTitle("With outgoing channel")
@@ -44,29 +44,69 @@ struct PeersView: View {
                 .padding(.horizontal, 10)
             }
             .navigationTitle("Peers")
+            .toolbar {
+                Button {
+                    showAliasesSheet.toggle()
+                } label : {
+                    Text("Aliases")
+                }
+            }
         }
-        .refreshable { await reload() }
+        .refreshable { await apiVM.getAll() }
+        
+        .sheet(isPresented: $showAliasesSheet) {
+            aliasesSheet
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+        }
         .searchable(text: $searchText, prompt: "Search by alias, peerId, or address")
         .textInputAutocapitalization(.never)
     }
     
-    func reload() async {
-        aliasesVM.getAll()
-        channelsVM.getAll()
-        nodeVM.getAll()
+    var aliasesSheet: some View {
+        ZStack {
+            Color.yellowHOPR.ignoresSafeArea(.all)
+            VStack {
+                Text("Aliases")
+                    .font(.headline)
+                if let aliases = apiVM.aliases {
+                    ScrollView {
+                        ForEach(aliases.sorted(by: <), id: \.key) { alias, peerId in
+                            VStack(alignment: .leading) {
+                                Text(alias)
+                                    .fontWeight(.semibold)
+                                HStack {
+                                    Spacer()
+                                    Text(peerId)
+                                        .lineLimit(1)
+                                        .minimumScaleFactor(0.2)
+                                }
+                            }
+                            .lightBluePanel
+                        }
+                    }
+                    .scrollIndicators(.never)
+                    .font(.footnote)
+                }
+//                Spacer()
+            }
+            .foregroundStyle(._darkBlueHOPR)
+            .padding([.top, .horizontal])
+            .monospaced()
+        }
     }
     
     var peersWithChannels: [NodePeer] {
         var filtered: [NodePeer] = []
-        if let peers = nodeVM.peers {
+        if let peers = apiVM.peers {
             filtered = peers.connected.filter {
-                channelsVM.linkedAddresses.contains($0.peerAddress)
+                apiVM.linkedAddresses.contains($0.peerAddress)
             }
         }
                 
         var output: [NodePeer] = []
         /// keys and values are inverted (it's alias -> peer_id)
-        if let aliases = aliasesVM.aliases {
+        if let aliases = apiVM.aliases {
             for peer in filtered {
                 var temp = peer
                 temp.alias = aliases.key(for: peer.peerId)
@@ -87,12 +127,12 @@ struct PeersView: View {
     
     var peersWithoutChannels: [NodePeer] {
         var filtered: [NodePeer] = []
-        if let peers = nodeVM.peers {
-            filtered = peers.connected.filter { !channelsVM.linkedAddresses.contains($0.peerAddress) }
+        if let peers = apiVM.peers {
+            filtered = peers.connected.filter { !apiVM.linkedAddresses.contains($0.peerAddress) }
         }
         
         var output: [NodePeer] = []
-        if let aliases = aliasesVM.aliases {
+        if let aliases = apiVM.aliases {
             for peer in filtered {
                 var temp = peer
                 temp.alias = aliases.key(for: peer.peerId)
@@ -114,7 +154,5 @@ struct PeersView: View {
 
 #Preview {
     PeersView()
-        .environmentObject(AliasesVM())
-        .environmentObject(ChannelsVM())
-        .environmentObject(NodeVM())
+        .environmentObject(APIVM())
 }

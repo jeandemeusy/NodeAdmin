@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct ChannelsView: View {
-    @EnvironmentObject var aliasesVM: AliasesVM
-    @EnvironmentObject var channelsVM: ChannelsVM
-    @EnvironmentObject var nodeVM: NodeVM
+    @EnvironmentObject var apiVM: APIVM
+
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVStack(alignment: .leading) {
                     LightBlueTile(text: "Outgoing channels funds", content:
-                                    channelsVM.channels?.outgoingBalanceString)
+                                    apiVM.channels?.outgoingBalanceString)
                     HStack {
-                        LightBlueTile(text: "# Incoming", value: channelsVM.channels?.incoming.count)
-                        LightBlueTile(text: "# Outgoing", value: channelsVM.channels?.outgoing.count)
+                        LightBlueTile(text: "# Incoming", value: apiVM.channels?.incoming.count)
+                        LightBlueTile(text: "# Outgoing", value: apiVM.channels?.outgoing.count)
                     }
                     
                     SectionTitle("Outgoing")
@@ -35,20 +34,15 @@ struct ChannelsView: View {
                 }
                 .padding(.horizontal, 10)
             }
-            .refreshable { await reload() }
+            .refreshable { await apiVM.getAll() }
             .navigationTitle("Channels")
         }
     }
     
-    func reload() async {
-        aliasesVM.getAll()
-        channelsVM.getAll()
-        nodeVM.getAll()
-    }
     
     var outgoingChannels: [Channel] {
-        let outgoing = channelsVM.channels?.outgoing ?? []
-        let peers = nodeVM.peers?.connected ?? []
+        let outgoing = apiVM.channels?.outgoing ?? []
+        let peers = apiVM.peers?.connected ?? []
         
         var tempOutput: [Channel] = []
         for channel in outgoing {
@@ -58,7 +52,7 @@ struct ChannelsView: View {
         }
         
         var output: [Channel] = []
-        if let aliases = aliasesVM.aliases {
+        if let aliases = apiVM.aliases {
             for channel in tempOutput {
                 if channel.peer == nil {
                     continue
@@ -73,8 +67,8 @@ struct ChannelsView: View {
     }
     
     var incomingChannels: [Channel] {
-        let outgoing = channelsVM.channels?.incoming ?? []
-        let peers = nodeVM.peers?.connected ?? []
+        let outgoing = apiVM.channels?.incoming ?? []
+        let peers = apiVM.peers?.connected ?? []
         
         var tempOutput: [Channel] = []
         for channel in outgoing {
@@ -84,7 +78,7 @@ struct ChannelsView: View {
         }
         
         var output: [Channel] = []
-        if let aliases = aliasesVM.aliases {
+        if let aliases = apiVM.aliases {
             for channel in tempOutput {
                 if channel.peer == nil {
                     continue
@@ -102,7 +96,5 @@ struct ChannelsView: View {
 
 #Preview {
     ChannelsView()
-        .environmentObject(AliasesVM())
-        .environmentObject(ChannelsVM())
-        .environmentObject(NodeVM())
+        .environmentObject(APIVM())
 }

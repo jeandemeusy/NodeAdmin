@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var aliasesVM: AliasesVM
-    @EnvironmentObject var accountVM: AccountVM
-    @EnvironmentObject var channelsVM: ChannelsVM
-    @EnvironmentObject var nodeVM: NodeVM
-    @EnvironmentObject var ticketsVM: TicketsVM
+    @EnvironmentObject var apiVM: APIVM
     
     @State var selection = 0
     var body: some View {
@@ -38,11 +34,7 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environmentObject(AliasesVM())
-        .environmentObject(AccountVM())
-        .environmentObject(ChannelsVM())
-        .environmentObject(NodeVM())
-        .environmentObject(TicketsVM())
+        .environmentObject(APIVM())
 }
 
 

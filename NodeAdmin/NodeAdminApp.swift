@@ -9,14 +9,7 @@ import SwiftUI
 
 @main
 struct NodeAdminApp: App {
-    @StateObject var aliasesVM = AliasesVM()
-    @StateObject var accountVM = AccountVM()
-    @StateObject var channelsVM = ChannelsVM()
-    @StateObject var nodeVM = NodeVM()
-    @StateObject var ticketsVM = TicketsVM()
-    
-    @AppStorage("host") private var host = ""
-    @AppStorage("token") private var token = ""
+    @StateObject var apiVM = APIVM()
     
     init() {
         let largeMenuUifont = UIFont.monospacedSystemFont(ofSize: 36, weight: .bold)
@@ -39,19 +32,13 @@ struct NodeAdminApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(aliasesVM)
-                .environmentObject(accountVM)
-                .environmentObject(channelsVM)
-                .environmentObject(nodeVM)
-                .environmentObject(ticketsVM)
+                .environmentObject(apiVM)
                 .onAppear {
-                    aliasesVM.getAll()
-                    accountVM.getAll()
-                    channelsVM.getAll()
-                    nodeVM.getAll()
-                    ticketsVM.getAll()
+                    Task {
+                        await apiVM.getAll()
+                    }
+                    apiVM.assignCredential()
                 }
         }
-        
     }
 }

@@ -14,24 +14,23 @@
 		22665BDC2B78D1470068F83E /* Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22665BDB2B78D1470068F83E /* Channels.swift */; };
 		22665BDE2B78D2940068F83E /* ChannelsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22665BDD2B78D2940068F83E /* ChannelsStore.swift */; };
 		22665BE12B78D3A70068F83E /* ChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22665BE02B78D3A70068F83E /* ChannelsView.swift */; };
-		22665BE32B78D3D30068F83E /* ChannelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22665BE22B78D3D30068F83E /* ChannelsViewModel.swift */; };
 		22665BE52B78D6390068F83E /* ChannelItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22665BE42B78D6390068F83E /* ChannelItemView.swift */; };
 		22665BE72B792D0A0068F83E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22665BE62B792D0A0068F83E /* HomeView.swift */; };
+		2268C6A92B800F2A005E930E /* SavedAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268C6A82B800F2A005E930E /* SavedAccount.swift */; };
+		2268C6AC2B80221C005E930E /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268C6AB2B80221C005E930E /* SheetView.swift */; };
 		22874B322B7A7F1700F7C601 /* AliasesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22874B312B7A7F1700F7C601 /* AliasesStore.swift */; };
-		22874B342B7A7FB700F7C601 /* AliasesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22874B332B7A7FB700F7C601 /* AliasesViewModel.swift */; };
 		22874B362B7ABE0700F7C601 /* PeersStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22874B352B7ABE0700F7C601 /* PeersStore.swift */; };
 		22874B382B7ABE6100F7C601 /* PeersPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22874B372B7ABE6100F7C601 /* PeersPing.swift */; };
 		229E00C22B78357E00C8943B /* AccountBalances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00C12B78357E00C8943B /* AccountBalances.swift */; };
 		229E00C42B78411A00C8943B /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00C32B78411A00C8943B /* Modifiers.swift */; };
 		229E00C62B7842F100C8943B /* NodeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00C52B7842F100C8943B /* NodeStore.swift */; };
 		229E00C82B78432F00C8943B /* NodeVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00C72B78432F00C8943B /* NodeVersion.swift */; };
-		229E00CA2B78455500C8943B /* NodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00C92B78455500C8943B /* NodeViewModel.swift */; };
 		229E00CC2B784C5E00C8943B /* NodePeers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00CB2B784C5E00C8943B /* NodePeers.swift */; };
 		229E00CF2B784DED00C8943B /* PeersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00CE2B784DED00C8943B /* PeersView.swift */; };
 		229E00D12B78522400C8943B /* NodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00D02B78522400C8943B /* NodeInfo.swift */; };
 		229E00D32B7855CE00C8943B /* TicketsStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00D22B7855CE00C8943B /* TicketsStatistics.swift */; };
 		229E00D52B78566B00C8943B /* TicketsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00D42B78566B00C8943B /* TicketsStore.swift */; };
-		229E00D72B7856E500C8943B /* TicketsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00D62B7856E500C8943B /* TicketsViewModel.swift */; };
+		229E00D72B7856E500C8943B /* APIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00D62B7856E500C8943B /* APIViewModel.swift */; };
 		22EDF3262B7BA61A0068DD43 /* ChannelsPostChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EDF3252B7BA61A0068DD43 /* ChannelsPostChannel.swift */; };
 		22EF92242B7820A500322F94 /* NodeAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92232B7820A500322F94 /* NodeAdminApp.swift */; };
 		22EF92262B7820A500322F94 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92252B7820A500322F94 /* ContentView.swift */; };
@@ -40,7 +39,6 @@
 		22EF92332B78210100322F94 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92322B78210100322F94 /* AccountStore.swift */; };
 		22EF92362B78223800322F94 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 22EF92352B78223800322F94 /* Alamofire */; };
 		22EF92392B78242200322F94 /* AccountAddresses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92382B78242200322F94 /* AccountAddresses.swift */; };
-		22EF923B2B78249B00322F94 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF923A2B78249B00322F94 /* AccountViewModel.swift */; };
 		22EF923E2B782C1A00322F94 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF923D2B782C1A00322F94 /* Utils.swift */; };
 		22EF92442B782DB600322F94 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92432B782DB600322F94 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
@@ -53,24 +51,23 @@
 		22665BDB2B78D1470068F83E /* Channels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channels.swift; sourceTree = "<group>"; };
 		22665BDD2B78D2940068F83E /* ChannelsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsStore.swift; sourceTree = "<group>"; };
 		22665BE02B78D3A70068F83E /* ChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsView.swift; sourceTree = "<group>"; };
-		22665BE22B78D3D30068F83E /* ChannelsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewModel.swift; sourceTree = "<group>"; };
 		22665BE42B78D6390068F83E /* ChannelItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelItemView.swift; sourceTree = "<group>"; };
 		22665BE62B792D0A0068F83E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2268C6A82B800F2A005E930E /* SavedAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAccount.swift; sourceTree = "<group>"; };
+		2268C6AB2B80221C005E930E /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
 		22874B312B7A7F1700F7C601 /* AliasesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasesStore.swift; sourceTree = "<group>"; };
-		22874B332B7A7FB700F7C601 /* AliasesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasesViewModel.swift; sourceTree = "<group>"; };
 		22874B352B7ABE0700F7C601 /* PeersStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeersStore.swift; sourceTree = "<group>"; };
 		22874B372B7ABE6100F7C601 /* PeersPing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeersPing.swift; sourceTree = "<group>"; };
 		229E00C12B78357E00C8943B /* AccountBalances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalances.swift; sourceTree = "<group>"; };
 		229E00C32B78411A00C8943B /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		229E00C52B7842F100C8943B /* NodeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeStore.swift; sourceTree = "<group>"; };
 		229E00C72B78432F00C8943B /* NodeVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeVersion.swift; sourceTree = "<group>"; };
-		229E00C92B78455500C8943B /* NodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeViewModel.swift; sourceTree = "<group>"; };
 		229E00CB2B784C5E00C8943B /* NodePeers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodePeers.swift; sourceTree = "<group>"; };
 		229E00CE2B784DED00C8943B /* PeersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeersView.swift; sourceTree = "<group>"; };
 		229E00D02B78522400C8943B /* NodeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeInfo.swift; sourceTree = "<group>"; };
 		229E00D22B7855CE00C8943B /* TicketsStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsStatistics.swift; sourceTree = "<group>"; };
 		229E00D42B78566B00C8943B /* TicketsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsStore.swift; sourceTree = "<group>"; };
-		229E00D62B7856E500C8943B /* TicketsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsViewModel.swift; sourceTree = "<group>"; };
+		229E00D62B7856E500C8943B /* APIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIViewModel.swift; sourceTree = "<group>"; };
 		22EDF3252B7BA61A0068DD43 /* ChannelsPostChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsPostChannel.swift; sourceTree = "<group>"; };
 		22EF92202B7820A500322F94 /* NodeAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NodeAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EF92232B7820A500322F94 /* NodeAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeAdminApp.swift; sourceTree = "<group>"; };
@@ -79,7 +76,6 @@
 		22EF922A2B7820A600322F94 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22EF92322B78210100322F94 /* AccountStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
 		22EF92382B78242200322F94 /* AccountAddresses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAddresses.swift; sourceTree = "<group>"; };
-		22EF923A2B78249B00322F94 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		22EF923C2B782AC200322F94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		22EF923D2B782C1A00322F94 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		22EF92432B782DB600322F94 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -100,11 +96,7 @@
 		22665BD62B78CB460068F83E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				22874B332B7A7FB700F7C601 /* AliasesViewModel.swift */,
-				22EF923A2B78249B00322F94 /* AccountViewModel.swift */,
-				22665BE22B78D3D30068F83E /* ChannelsViewModel.swift */,
-				229E00C92B78455500C8943B /* NodeViewModel.swift */,
-				229E00D62B7856E500C8943B /* TicketsViewModel.swift */,
+				229E00D62B7856E500C8943B /* APIViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -116,6 +108,14 @@
 				22665BE42B78D6390068F83E /* ChannelItemView.swift */,
 			);
 			path = Channels;
+			sourceTree = "<group>";
+		};
+		2268C6AA2B802211005E930E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2268C6AB2B80221C005E930E /* SheetView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		229E00CD2B784DD900C8943B /* Peers */ = {
@@ -147,6 +147,7 @@
 		22EF92222B7820A500322F94 /* NodeAdmin */ = {
 			isa = PBXGroup;
 			children = (
+				2268C6AA2B802211005E930E /* Views */,
 				22EF923C2B782AC200322F94 /* Info.plist */,
 				22665BDF2B78D3350068F83E /* Channels */,
 				22EF923F2B782D4E00322F94 /* Home */,
@@ -200,6 +201,7 @@
 				22874B372B7ABE6100F7C601 /* PeersPing.swift */,
 				229E00D22B7855CE00C8943B /* TicketsStatistics.swift */,
 				222AF8322B7A3741005D46FF /* Wei.swift */,
+				2268C6A82B800F2A005E930E /* SavedAccount.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -298,22 +300,21 @@
 			files = (
 				22665BD82B78CD020068F83E /* PeerItemView.swift in Sources */,
 				22EF92332B78210100322F94 /* AccountStore.swift in Sources */,
-				22EF923B2B78249B00322F94 /* AccountViewModel.swift in Sources */,
-				22874B342B7A7FB700F7C601 /* AliasesViewModel.swift in Sources */,
+				2268C6AC2B80221C005E930E /* SheetView.swift in Sources */,
 				22EF92442B782DB600322F94 /* SettingsView.swift in Sources */,
 				22874B382B7ABE6100F7C601 /* PeersPing.swift in Sources */,
-				229E00D72B7856E500C8943B /* TicketsViewModel.swift in Sources */,
+				229E00D72B7856E500C8943B /* APIViewModel.swift in Sources */,
 				22EF92262B7820A500322F94 /* ContentView.swift in Sources */,
 				229E00C42B78411A00C8943B /* Modifiers.swift in Sources */,
 				22EDF3262B7BA61A0068DD43 /* ChannelsPostChannel.swift in Sources */,
 				229E00CF2B784DED00C8943B /* PeersView.swift in Sources */,
+				2268C6A92B800F2A005E930E /* SavedAccount.swift in Sources */,
 				229E00CC2B784C5E00C8943B /* NodePeers.swift in Sources */,
 				229E00D32B7855CE00C8943B /* TicketsStatistics.swift in Sources */,
 				229E00C22B78357E00C8943B /* AccountBalances.swift in Sources */,
 				22874B322B7A7F1700F7C601 /* AliasesStore.swift in Sources */,
 				22874B362B7ABE0700F7C601 /* PeersStore.swift in Sources */,
 				22EF92392B78242200322F94 /* AccountAddresses.swift in Sources */,
-				22665BE32B78D3D30068F83E /* ChannelsViewModel.swift in Sources */,
 				222AF8332B7A3741005D46FF /* Wei.swift in Sources */,
 				22EF92242B7820A500322F94 /* NodeAdminApp.swift in Sources */,
 				22665BDA2B78CD980068F83E /* PeerDetailView.swift in Sources */,
@@ -325,7 +326,6 @@
 				22665BDC2B78D1470068F83E /* Channels.swift in Sources */,
 				22EF923E2B782C1A00322F94 /* Utils.swift in Sources */,
 				22665BE12B78D3A70068F83E /* ChannelsView.swift in Sources */,
-				229E00CA2B78455500C8943B /* NodeViewModel.swift in Sources */,
 				22665BE52B78D6390068F83E /* ChannelItemView.swift in Sources */,
 				22665BE72B792D0A0068F83E /* HomeView.swift in Sources */,
 				229E00C62B7842F100C8943B /* NodeStore.swift in Sources */,
@@ -460,7 +460,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"NodeAdmin/Preview Content\"";
 				DEVELOPMENT_TEAM = 2CS9SQ5H88;
 				ENABLE_PREVIEWS = YES;
@@ -494,7 +494,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"NodeAdmin/Preview Content\"";
 				DEVELOPMENT_TEAM = 2CS9SQ5H88;
 				ENABLE_PREVIEWS = YES;

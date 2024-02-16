@@ -41,10 +41,8 @@ struct ListItem: View {
 }
 
 struct PeerActionButton: View {
-    @Environment(\.isEnabled) private var isEnabled: Bool
-
     let image: String
-    var text: String? = nil
+    var text: String
     var rotationDegrees: Double = 0.0
     var verticalOffset: Double = 0.0
     var action: (() -> Void)? = nil
@@ -65,34 +63,17 @@ struct PeerActionButton: View {
                     .rotationEffect(.degrees(rotationDegrees))
                     .offset(x: 0, y: verticalOffset)
                     
-                    if let text=text {
-                        Text(text)
-                            .font(.footnote.weight(.semibold))
-                            .monospaced()
-                    }
+                    Text(text)
                 }
                 Spacer()
             }
-            .frame(height: 14)
-            .padding()
         }
-        .foregroundStyle(isEnabled ? .white:.gray)
-        .background(.gradientHOPR.opacity(isEnabled ? 1:0))
-        .clipShape(
-            .capsule(style: .continuous)
-        )
-        .overlay {
-            Capsule()
-                .stroke(.gray, lineWidth: 1)
-                .opacity(isEnabled ? 0:1)
-        }
+        .buttonStyle(.hopr)
     }
 }
 
 struct PeerDetailView: View {
-    @EnvironmentObject var aliasesVM: AliasesVM
-    @EnvironmentObject var channelsVM: ChannelsVM
-    @EnvironmentObject var nodeVM: NodeVM
+    @EnvironmentObject var apiVM: APIVM
     
     @State private var showAddAliasSheet = false
     @State private var showRemoveAliasSheet = false
@@ -127,7 +108,7 @@ struct PeerDetailView: View {
                 SectionTitle("Connectivity")
                 HStack {
                     PeerActionButton(image: "dot.radiowaves.up.forward", text: "Ping"      ) {
-                        nodeVM.pingPeer(to: peer.peerId)
+                        apiVM.pingPeer(to: peer.peerId)
                     }
                     PeerActionButton(image: "point.3.filled.connected.trianglepath.dotted", text: "Open channel", verticalOffset: -1) { showOpenChannelSheet = true }
                         .disabled(hasOutChannel)
@@ -149,25 +130,30 @@ struct PeerDetailView: View {
                     .disabled(true)
                     .padding(.horizontal)
             }
-            .sheet(isPresented: $nodeVM.pingResultFailed) {
+            .sheet(isPresented: $apiVM.pingResultFailed) {
                 pingResultFailed
-                    .presentationDetents([.height(200)])
+                    .presentationDetents([.height(200), .medium])
+                    .presentationDragIndicator(.visible)
             }
-            .sheet(isPresented: $nodeVM.pingResultAccessible) {
+            .sheet(isPresented: $apiVM.pingResultAccessible) {
                 pingResultSuccess
-                    .presentationDetents([.height(200)])
+                    .presentationDetents([.height(200), .medium])
+                    .presentationDragIndicator(.visible)
             }
             .sheet(isPresented: $showAddAliasSheet) {
                 addAliasSheet
-                    .presentationDetents([.height(200)])
+                    .presentationDetents([.height(200), .medium])
+                    .presentationDragIndicator(.visible)
             }
             .sheet(isPresented: $showRemoveAliasSheet) {
                 removeAliasSheet
-                    .presentationDetents([.height(200)])
+                    .presentationDetents([.height(200), .medium])
+                    .presentationDragIndicator(.visible)
             }
             .sheet(isPresented: $showOpenChannelSheet) {
                 openChannelSheet
-                    .presentationDetents([.height(200)])
+                    .presentationDetents([.height(200), .medium])
+                    .presentationDragIndicator(.visible)
             }
             .padding(.horizontal, 10)
             .navigationTitle((peer.alias != nil) ? peer.alias!:peer.peerId)
@@ -175,216 +161,80 @@ struct PeerDetailView: View {
     }
     
     var pingResultFailed: some View {
-        ZStack {
-            Color.yellowHOPR.ignoresSafeArea(.all)
-            VStack {
-                Text("Pinging failed")
-                    .font(.headline)
-            }
-            .foregroundStyle(._darkBlueHOPR)
-            .padding(.horizontal)
-            .monospaced()
+        SheetView(title: "Failed to ping") {
+            EmptyView()
         }
     }
     
     var pingResultSuccess: some View {
-        ZStack {
-            Color.yellowHOPR.ignoresSafeArea(.all)
-            VStack {
-                Text("Ping successful")
-                    .font(.headline)
-                Text("latency: \(nodeVM.pingResult!.latency) ms")
-            }
-            .foregroundStyle(._darkBlueHOPR)
-            .padding(.horizontal)
-            .monospaced()
+        SheetView(title: "Ping successful") {
+            Text("latency: \(apiVM.pingResult!.latency) ms")
+                .vcenter
         }
     }
     
     var addAliasSheet: some View {
-        ZStack {
-            Color.yellowHOPR.ignoresSafeArea(.all)
-            VStack {
-                Text("Add alias")
-                    .font(.headline)
-                HStack {
-                    Text("Alias")
-                        .fontWeight(.semibold)
-                    TextField("Alice", text: $newAlias)
-                        .foregroundStyle(Color.primary)
-                        .textFieldStyle(.roundedBorder)
-                }
-                    .frame(width: 300)
-                
-                Divider()
-                    .padding(.bottom)
-                
-                HStack {
-                    Button {
-                        showAddAliasSheet = false
-                        newAlias = ""
-                    } label: {
-                        Text("Dismiss")
-                            .font(.footnote.weight(.semibold))
-                            .foregroundStyle(.red)
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                            .overlay {
-                                Capsule()
-                                    .stroke(.red, lineWidth: 1)
-                            }
-                    }
-                    Spacer()
-                    
-                    Button {
-                        aliasesVM.postAlias(peerId: peer.peerId, alias: newAlias)
-                        showAddAliasSheet = false
-                        newAlias = ""
-                    } label: {
-                        Text("Submit")
-                            .font(.footnote.weight(.semibold))
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                            .background(.gradientHOPR)
-                            .foregroundStyle(.white)
-                            .clipShape(.capsule)
-                    }
-                    .disabled(newAlias.isEmpty)
-                }
-                .padding(.bottom)
-                Text("After submission, a delay of ~30s is to expect before the alias is visible")
-                    .multilineTextAlignment(.center)
-                    .font(.custom("note", size: 10, relativeTo: .footnote))
+        SheetView(title: "Add alias", footer: "After submission, a delay of ~30s is to expect before the alias is visible") {
+            HStack {
+                Text("Alias")
+                    .fontWeight(.semibold)
+                TextField("Alice", text: $newAlias)
+                    .foregroundStyle(Color.primary)
+                    .textFieldStyle(.roundedBorder)
             }
-            .foregroundStyle(._darkBlueHOPR)
-            .padding(.horizontal, 25)
-            .monospaced()
+            .frame(width: 300)
+        } dismissAction: {
+            showAddAliasSheet = false
+            newAlias = ""
+        } confirmAction: {
+            apiVM.postAlias(peerId: peer.peerId, alias: newAlias)
+            showAddAliasSheet = false
+            newAlias = ""
+        } disabledCondition: {
+            newAlias.isEmpty
         }
     }
     
     var removeAliasSheet: some View {
-        ZStack {
-            Color.yellowHOPR.ignoresSafeArea(.all)
-            VStack {
-                Text("Remove alias")
-                    .font(.headline)
-                
-                Divider()
-                    .padding(.bottom)
-                
-                HStack {
-                    Button {
-                        showRemoveAliasSheet = false
-                    } label: {
-                        Text("Dismiss")
-                            .font(.footnote.weight(.semibold))
-                            .foregroundStyle(.red)
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                            .overlay {
-                                Capsule()
-                                    .stroke(.red, lineWidth: 1)
-                            }
-                    }
-                    Spacer()
-                    
-                    Button {
-                        aliasesVM.deleteAlias(alias: peer.alias!)
-                        showRemoveAliasSheet = false
-                    } label: {
-                        Text("Confirm")
-                            .font(.footnote.weight(.semibold))
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                            .background(.gradientHOPR)
-                            .foregroundStyle(.white)
-                            .clipShape(.capsule)
-                    }
-                }
-                .padding(.bottom)
-                Text("After submission, a delay of ~30s is to expect before the alias is removed")
-                    .multilineTextAlignment(.center)
-                    .font(.custom("note", size: 10, relativeTo: .footnote))
-            }
-            .foregroundStyle(._darkBlueHOPR)
-            .padding(.horizontal, 25)
-            .monospaced()
+        SheetView(title: "Remove alias", footer: "After submission, a delay of ~30s is to expect before the alias is removed") {
+            EmptyView()
+        } dismissAction: {
+            showRemoveAliasSheet = false
+        } confirmAction: {
+            apiVM.deleteAlias(alias: peer.alias!)
+            showRemoveAliasSheet = false
         }
     }
     
     var openChannelSheet: some View {
-        ZStack {
-            Color.yellowHOPR.ignoresSafeArea(.all)
-            VStack {
-                Text("Open channel")
-                    .font(.headline)
-                HStack {
-                    Text("Amount")
-                        .fontWeight(.semibold)
-                    TextField("Amount", value: $newAmount, format: .number)
-                        .textFieldStyle(.roundedBorder)
-                        .foregroundStyle(Color.primary)
-                    Text("wxHOPR")
-                }
-                    .frame(width: 300)
-                
-                Divider()
-                    .padding(.bottom)
-                
-                HStack {
-                    Button {
-                        showOpenChannelSheet = false
-                        newAmount = 0.0
-                    } label: {
-                        Text("Dismiss")
-                            .font(.footnote.weight(.semibold))
-                            .foregroundStyle(.red)
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                            .overlay {
-                                Capsule()
-                                    .stroke(.red, lineWidth: 1)
-                            }
-                    }
-                    Spacer()
-                    
-                    Button {
-                        channelsVM.postChannel(address: peer.peerAddress, amount: newAmount)
-                        showOpenChannelSheet = false
-                        newAmount = 0.0
-                    } label: {
-                        Text("Submit")
-                            .font(.footnote.weight(.semibold))
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                            .background(.gradientHOPR)
-                            .foregroundStyle(.white)
-                            .clipShape(.capsule)
-                    }
-                    .disabled(newAmount == 0)
-                }
-                .padding(.bottom)
-                Text("After submission, a delay of ~30s is to expect before the channel is opened")
-                    .multilineTextAlignment(.center)
-                    .font(.custom("note", size: 10, relativeTo: .footnote))
+        SheetView(title: "Open channel", footer: "After submission, a delay of ~30s is to expect before the channel is opened") {
+            HStack {
+                Text("Amount")
+                    .fontWeight(.semibold)
+                TextField("Amount", value: $newAmount, format: .number)
+                    .textFieldStyle(.roundedBorder)
+                    .foregroundStyle(Color.primary)
+                Text("wxHOPR")
             }
-            .foregroundStyle(._darkBlueHOPR)
-            .padding(.horizontal, 25)
-            .monospaced()
+            .frame(width: 300)
+        } dismissAction: {
+            showOpenChannelSheet = false
+            newAmount = 0.0
+        } confirmAction: {
+            apiVM.postChannel(address: peer.peerAddress, amount: newAmount)
+            showOpenChannelSheet = false
+            newAmount = 0.0
+        } disabledCondition: {
+            newAmount == 0
         }
     }
 }
 
 #Preview("Without channel") {
     PeerDetailView(peer: NodePeer.preview, hasOutChannel: false)
-        .environmentObject(AliasesVM())
-        .environmentObject(ChannelsVM())
-        .environmentObject(NodeVM())
+        .environmentObject(APIVM())
 }
 #Preview("With channel") {    
     PeerDetailView(peer: NodePeer.preview, hasOutChannel: true)
-        .environmentObject(AliasesVM())
-        .environmentObject(ChannelsVM())
-        .environmentObject(NodeVM())
-
+        .environmentObject(APIVM())
 }

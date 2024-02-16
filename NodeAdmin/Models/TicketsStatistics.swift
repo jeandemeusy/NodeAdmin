@@ -32,18 +32,18 @@ struct TicketsStatistics: Codable {
     }
     
     var unredeemedValue: Wei {
-        Wei(_value: weiUnredeemedValue, unit: "wxHOPR")
+        Wei(weiUnredeemedValue, unit: "wxHOPR")
     }
     
     var redeemedValue: Wei {
-        Wei(_value: weiRedeemedValue, unit: "wxHOPR")
+        Wei(weiRedeemedValue, unit: "wxHOPR")
     }
     
     var neglectedValue: Wei {
-        Wei(_value: weiNeglectedValue, unit: "wxHOPR")
+        Wei(weiNeglectedValue, unit: "wxHOPR")
     }
     
     var rejectedValue: Wei {
-        Wei(_value: weiRejectedValue, unit: "wxHOPR")
+        Wei(weiRejectedValue, unit: "wxHOPR")
     }
 }

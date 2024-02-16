@@ -74,13 +74,7 @@ struct LightBlueTile: View {
 }
 
 struct HomeView: View {
-    @EnvironmentObject var aliasesVM: AliasesVM
-    @EnvironmentObject var accountVM: AccountVM
-    @EnvironmentObject var channelsVM: ChannelsVM
-    @EnvironmentObject var nodeVM: NodeVM
-    @EnvironmentObject var ticketsVM: TicketsVM
-    
-    @AppStorage("host") private var host = ""
+    @EnvironmentObject var apiVM: APIVM
 
     var body: some View {
         NavigationView {
@@ -94,19 +88,20 @@ struct HomeView: View {
                             .foregroundStyle(.darkBlueHOPR)
                         
                         VStack(alignment: .leading) {
-                            Text(host)
+                            Text("\(apiVM.nickname)@\(apiVM.host)")
                                 .lineLimit(1)
+                                .minimumScaleFactor(0.2)
                                 .foregroundStyle(.grey)
                             Divider()
                             
-                            Text("version: \(nodeVM.version?.version ?? "-")")
+                            Text("version: \(apiVM.version?.version ?? "-")")
                             Divider()
                             
-                            Text("network: \(nodeVM.info?.network ?? "-")")
+                            Text("network: \(apiVM.info?.network ?? "-")")
                             Divider()
                             
-                            Text("status: ") + Text(nodeVM.info?.connectivityStatus ?? "-")
-                                .foregroundStyle(nodeVM.info?.statusColor ?? .grey)
+                            Text("status: ") + Text(apiVM.info?.connectivityStatus ?? "-")
+                                .foregroundStyle(apiVM.info?.statusColor ?? .grey)
                                 .fontWeight(.bold)
                             
                         }
@@ -121,8 +116,8 @@ struct HomeView: View {
                     .padding(.bottom, 5)
                     
                     Group {
-                        Text("id: \(accountVM.addresses?.hopr ?? "-")")
-                        Text("address: \(accountVM.addresses?.native ?? "-")")
+                        Text("id: \(apiVM.addresses?.hopr ?? "-")")
+                        Text("address: \(apiVM.addresses?.native ?? "-")")
                     }
                     .lineLimit(1)
                     .font(.custom("addresses", size: 8, relativeTo: .footnote))
@@ -131,53 +126,41 @@ struct HomeView: View {
                 
                     SectionTitle("Safe's assets")
                     HStack {
-                        LightBlueTile(text: "HOPR", content: accountVM.balances?.safeHopr.valueWithUnit)
+                        LightBlueTile(text: "HOPR", content: apiVM.balances?.safeHopr.valueWithUnit)
                         
-                        LightBlueTile(text: "Native", content: accountVM.balances?.safeNative.valueWithUnit)
+                        LightBlueTile(text: "Native", content: apiVM.balances?.safeNative.valueWithUnit)
                     }
                     
-                    LightBlueTile(text: "Allowance", content: accountVM.balances?.safeHoprAllowance.valueWithUnit)
+                    LightBlueTile(text: "Allowance", content: apiVM.balances?.safeHoprAllowance.valueWithUnit)
                     
                     SectionTitle("Rewards")
                         
-                    LightBlueTile(text: "Redeemed", content: ticketsVM.statistics?.redeemedValue.valueWithUnit)
+                    LightBlueTile(text: "Redeemed", content: apiVM.statistics?.redeemedValue.valueWithUnit)
                     HStack {
-                        LightBlueTile(text: "Unredeemed", content: ticketsVM.statistics?.unredeemedValue.valueWithUnit)
+                        LightBlueTile(text: "Unredeemed", content: apiVM.statistics?.unredeemedValue.valueWithUnit)
                         LightBlueTile(text: "Rejected", content:
-                                        ticketsVM.statistics?.rejectedValue.valueWithUnit)
+                                        apiVM.statistics?.rejectedValue.valueWithUnit)
                     }
                     
                     SectionTitle("Channels")
                     LightBlueTile(text: "Outgoing channels funds", content:
-                                    channelsVM.channels?.outgoingBalanceString)
+                                    apiVM.channels?.outgoingBalanceString)
                     HStack {
-                        LightBlueTile(text: "# Incoming", value: channelsVM.channels?.incoming.count)
+                        LightBlueTile(text: "# Incoming", value: apiVM.channels?.incoming.count)
                         LightBlueTile(text: "# Outgoing", value:
-                            channelsVM.channels?.outgoing.count)
+                            apiVM.channels?.outgoing.count)
                     }
                     
                 }
                 .padding(.horizontal, 10)
             }
             .navigationTitle("Home")
-            .refreshable { await reload() }
+            .refreshable { await apiVM.getAll() }
         }
-    }
-    
-    func reload() async {
-        aliasesVM.getAll()
-        accountVM.getAll()
-        channelsVM.getAll()
-        nodeVM.getAll()
-        ticketsVM.getAll()
     }
 }
 
 #Preview {
     HomeView()
-        .environmentObject(AliasesVM())
-        .environmentObject(AccountVM())
-        .environmentObject(ChannelsVM())
-        .environmentObject(NodeVM())
-        .environmentObject(TicketsVM())
+        .environmentObject(APIVM())
 }
