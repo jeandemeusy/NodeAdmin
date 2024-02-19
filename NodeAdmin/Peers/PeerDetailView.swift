@@ -162,7 +162,10 @@ struct PeerDetailView: View {
     
     var pingResultFailed: some View {
         SheetView(title: "Failed to ping") {
-            EmptyView()
+            Text("An error occured while pinging \(peer.displayName)")
+                .lineLimit(2)
+                .minimumScaleFactor(0.2)
+                .multilineTextAlignment(.center)
         }
     }
     

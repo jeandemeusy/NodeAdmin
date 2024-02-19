@@ -19,7 +19,7 @@ struct SectionTitle: View {
             Text(title)
                 .monospaced()
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.darkForegroundSecondaryDM)
                 .padding(.top)
             Spacer()
         }
@@ -57,7 +57,7 @@ struct LightBlueTile: View {
         VStack(alignment: .leading) {
             Text(text)
                 .font(.headline.weight(.bold))
-                .foregroundStyle(.darkBlueHOPR)
+                .foregroundStyle(.darkForegroundDM)
             
             HStack {
                 Spacer()
@@ -85,7 +85,7 @@ struct HomeView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height:80)
-                            .foregroundStyle(.darkBlueHOPR)
+                            .foregroundStyle(.darkForegroundDM)
                         
                         VStack(alignment: .leading) {
                             Text("\(apiVM.nickname)@\(apiVM.host)")
@@ -108,10 +108,6 @@ struct HomeView: View {
                         .font(.caption)
                     }
                     .lightBluePanel
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(.darkBlueHOPR, lineWidth: 1)
-                    )
                     .padding(.top)
                     .padding(.bottom, 5)
                     
@@ -121,7 +117,7 @@ struct HomeView: View {
                     }
                     .lineLimit(1)
                     .font(.custom("addresses", size: 8, relativeTo: .footnote))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.darkForegroundSecondaryDM)
                     .monospaced()
                 
                     SectionTitle("Safe's assets")

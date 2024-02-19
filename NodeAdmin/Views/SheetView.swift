@@ -17,7 +17,7 @@ struct SheetView<Content: View>: View {
     
     var body: some View {
         ZStack {
-            Color.yellowHOPR.ignoresSafeArea(.all)
+            Color.sheetBackgroundDM.ignoresSafeArea(.all)
             VStack {
                 Text(title)
                     .font(.headline)
@@ -26,38 +26,42 @@ struct SheetView<Content: View>: View {
 
                 content
                 
-                Spacer()
-                
-                HStack {
-                    if let action = dismissAction{
-                        Button {
-                            action()
-                        } label: {
-                            Text("Dismiss")
-                        }
-                        .buttonStyle(.dismiss)
-                    }
-                    
+                if dismissAction != nil || confirmAction != nil || footer != nil{
                     Spacer()
-                    
-                    if let action = confirmAction {
-                        Button {
-                            action()
-                        } label: {
-                            Text("Submit")
-                        }
-                        .buttonStyle(.hopr)
-                        .disabled(disabledCondition == nil ? false:disabledCondition!())
-                    }
                 }
-                .padding(.bottom)
+                
+                if dismissAction != nil || confirmAction != nil {
+                    HStack {
+                        if let action = dismissAction{
+                            Button {
+                                action()
+                            } label: {
+                                Text("Cancel")
+                            }
+                            .buttonStyle(.dismiss)
+                        }
+                        
+                        Spacer()
+                        
+                        if let action = confirmAction {
+                            Button {
+                                action()
+                            } label: {
+                                Text("Submit")
+                            }
+                            .buttonStyle(.hopr)
+                            .disabled(disabledCondition == nil ? false:disabledCondition!())
+                        }
+                    }
+                    .padding(.bottom)
+                }
                 if let footer = footer {
                     Text(footer)
                         .multilineTextAlignment(.center)
                         .font(.custom("note", size: 10, relativeTo: .footnote))
                 }
             }
-            .foregroundStyle(._darkBlueHOPR)
+            .foregroundStyle(.darkForegroundDM)
             .padding([.top, .horizontal])
             .monospaced()
         }

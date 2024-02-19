@@ -18,11 +18,11 @@ struct NodeAdminApp: App {
 
         UINavigationBar.appearance().largeTitleTextAttributes = [
             .font : largeMenuUifont,
-            .foregroundColor: UIColor(.darkBlueHOPR),
+            .foregroundColor: UIColor(.darkForegroundDM),
         ]
         UINavigationBar.appearance().titleTextAttributes =  [
             .font : smallMenuUifont,
-            .foregroundColor: UIColor(.darkBlueHOPR)
+            .foregroundColor: UIColor(.darkForegroundDM)
         ]
         UITabBarItem.appearance().setTitleTextAttributes([
             .font: tabUifont

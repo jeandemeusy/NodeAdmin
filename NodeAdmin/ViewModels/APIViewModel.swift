@@ -33,7 +33,7 @@ class APIVM: ObservableObject {
     var key: String { credential?.token ?? "" }
     
     func getCredentials() -> [SavedAccount] {
-        if let savedData = UserDefaults.standard.object(forKey: "credentials") as? Data {
+        if let savedData = UserDefaults.group!.object(forKey: "credentials") as? Data {
             do {
                  return try JSONDecoder().decode([SavedAccount].self, from: savedData)
             } catch {
@@ -50,7 +50,7 @@ class APIVM: ObservableObject {
         
         do {
             let encodedData = try JSONEncoder().encode(credentials)
-            UserDefaults.standard.set(encodedData, forKey: "credentials")
+            UserDefaults.group!.set(encodedData, forKey: "credentials")
             self.credential = newCredential
             return true
         }

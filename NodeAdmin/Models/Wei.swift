@@ -25,6 +25,6 @@ struct Wei {
 
     }
     var valueWithUnit: String {
-        return "\(reduced.formatted()) \(unit)"
+        return "\(reduced.rounded(2).formatted()) \(unit)"
     }
 }

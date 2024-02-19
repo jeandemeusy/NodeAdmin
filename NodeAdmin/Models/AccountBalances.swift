@@ -41,4 +41,12 @@ struct AccountBalances: Codable {
     var safeHoprAllowance: Wei {
         Wei(weiSafeHoprAllowance, unit: "wxHOPR")
     }
+    
+    static var preview: AccountBalances {
+        AccountBalances(weiNative: "100000000000000000", weiHopr: "0", weiSafeNative: "0", weiSafeHopr: "28487483734000000000000", weiSafeHoprAllowance: "43382928382")
+    }
+    
+    static var null: AccountBalances {
+        AccountBalances(weiNative: "0", weiHopr: "0", weiSafeNative: "0", weiSafeHopr: "0", weiSafeHoprAllowance: "0")
+    }
 }

@@ -64,10 +64,14 @@ struct LightBluePanelView: ViewModifier {
         content
             .padding(.horizontal)
             .padding(.vertical, 10)
-            .background(.skyBlueHOPR)
+            .background(.pannelBackgroundDM)
             .clipShape(.rect(cornerRadius: CGFloat(10)))
             .foregroundStyle(.grey)
             .monospaced()
+//            .overlay(
+//                RoundedRectangle(cornerRadius: 10)
+//                    .stroke(.darkForegroundDM.opacity(0.1), lineWidth: 1)
+//            )
     }
 }
 
@@ -79,6 +83,7 @@ struct HOPRButtonStyle: ButtonStyle {
     struct Button: View {
         let configuration: ButtonStyle.Configuration
         @Environment(\.isEnabled) private var isEnabled: Bool
+        
         var body: some View {
             configuration.label
                 .font(.footnote.weight(.semibold))
@@ -86,8 +91,8 @@ struct HOPRButtonStyle: ButtonStyle {
                 .padding(.horizontal)
                 .frame(maxHeight: 50)
                 .monospaced()
-                .foregroundStyle(isEnabled ? .white:.gray)
-                .background(.gradientHOPR.opacity(isEnabled ? 1:0))
+                .foregroundStyle(isEnabled ? .lightForegroundSecondaryDM:.gray)
+                .background(.buttonBackground.gradient.opacity(isEnabled ? 1:0))
                 .clipShape(
                     .capsule(style: .continuous)
                 )
@@ -96,6 +101,13 @@ struct HOPRButtonStyle: ButtonStyle {
                         .stroke(.gray, lineWidth: 1)
                         .opacity(isEnabled ? 0:1)
                 }
+                .scaleEffect(isPressed ? 0.9 : 1.0)
+                .opacity(configuration.isPressed ? 0.6 : 1.0)
+                .animation(.easeInOut, value: isPressed)
+        }
+        
+        var isPressed: Bool {
+            configuration.isPressed
         }
     }
 }
@@ -108,6 +120,7 @@ struct DismissButtonStyle: ButtonStyle {
     struct Button: View {
         let configuration: ButtonStyle.Configuration
         @Environment(\.isEnabled) private var isEnabled: Bool
+        
         var body: some View {
             configuration.label
                 .font(.footnote.weight(.semibold))
@@ -123,6 +136,13 @@ struct DismissButtonStyle: ButtonStyle {
                     Capsule()
                         .stroke(.red, lineWidth: 1)
                 }
+                .scaleEffect(isPressed ? 0.9 : 1.0)
+                .opacity(configuration.isPressed ? 0.6 : 1.0)
+                .animation(.easeInOut, value: isPressed)
+        }
+        
+        var isPressed: Bool {
+            configuration.isPressed
         }
     }
 }
@@ -130,5 +150,17 @@ struct DismissButtonStyle: ButtonStyle {
 extension Dictionary where Value: Equatable {
     func key(for value: Value) -> Key? {
         return first { $0.1 == value }?.0
+    }
+}
+
+extension UserDefaults {
+    static let group = UserDefaults(suiteName: "group.NodeAdmin")
+}
+
+extension Double {
+    /// Rounds the double to decimal places value
+    func rounded(_ places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
     }
 }

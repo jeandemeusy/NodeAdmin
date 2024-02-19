@@ -9,6 +9,22 @@
 /* Begin PBXBuildFile section */
 		222AF8332B7A3741005D46FF /* Wei.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222AF8322B7A3741005D46FF /* Wei.swift */; };
 		2235FCB42B7A1B2B0068F8F0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2235FCB32B7A1B2B0068F8F0 /* Colors.swift */; };
+		223B26C02B827D5600D3C9D8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223B26BF2B827D5600D3C9D8 /* WidgetKit.framework */; };
+		223B26C22B827D5600D3C9D8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223B26C12B827D5600D3C9D8 /* SwiftUI.framework */; };
+		223B26C52B827D5600D3C9D8 /* NodeAdminWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223B26C42B827D5600D3C9D8 /* NodeAdminWidgetBundle.swift */; };
+		223B26C92B827D5600D3C9D8 /* NodeAdminWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223B26C82B827D5600D3C9D8 /* NodeAdminWidget.swift */; };
+		223B26CD2B827D5700D3C9D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 223B26CC2B827D5700D3C9D8 /* Assets.xcassets */; };
+		223B26D12B827D5700D3C9D8 /* NodeAdminWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 223B26BD2B827D5600D3C9D8 /* NodeAdminWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		223B26D72B82836800D3C9D8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 223B26D62B82836800D3C9D8 /* Alamofire */; };
+		223B26E02B833CE200D3C9D8 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00C32B78411A00C8943B /* Modifiers.swift */; };
+		223B26E12B833CEF00D3C9D8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2235FCB32B7A1B2B0068F8F0 /* Colors.swift */; };
+		223B26E22B833D0B00D3C9D8 /* Wei.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222AF8322B7A3741005D46FF /* Wei.swift */; };
+		223B26E32B833D2000D3C9D8 /* AccountBalances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00C12B78357E00C8943B /* AccountBalances.swift */; };
+		223B26E42B833D3A00D3C9D8 /* SavedAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268C6A82B800F2A005E930E /* SavedAccount.swift */; };
+		223B26E62B833EE700D3C9D8 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92322B78210100322F94 /* AccountStore.swift */; };
+		223B26E72B833F4A00D3C9D8 /* AccountAddresses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92382B78242200322F94 /* AccountAddresses.swift */; };
+		223B26E82B833F5E00D3C9D8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF923D2B782C1A00322F94 /* Utils.swift */; };
+		223B27062B83846000D3C9D8 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223B27042B837F6400D3C9D8 /* AppIntent.swift */; };
 		22665BD82B78CD020068F83E /* PeerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22665BD72B78CD020068F83E /* PeerItemView.swift */; };
 		22665BDA2B78CD980068F83E /* PeerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22665BD92B78CD980068F83E /* PeerDetailView.swift */; };
 		22665BDC2B78D1470068F83E /* Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22665BDB2B78D1470068F83E /* Channels.swift */; };
@@ -43,9 +59,43 @@
 		22EF92442B782DB600322F94 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92432B782DB600322F94 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		223B26CF2B827D5700D3C9D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22EF92182B7820A500322F94 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 223B26BC2B827D5600D3C9D8;
+			remoteInfo = NodeAdminWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		223B26D22B827D5700D3C9D8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				223B26D12B827D5700D3C9D8 /* NodeAdminWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		222AF8322B7A3741005D46FF /* Wei.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wei.swift; sourceTree = "<group>"; };
 		2235FCB32B7A1B2B0068F8F0 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		223B26BD2B827D5600D3C9D8 /* NodeAdminWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NodeAdminWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		223B26BF2B827D5600D3C9D8 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		223B26C12B827D5600D3C9D8 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		223B26C42B827D5600D3C9D8 /* NodeAdminWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeAdminWidgetBundle.swift; sourceTree = "<group>"; };
+		223B26C82B827D5600D3C9D8 /* NodeAdminWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeAdminWidget.swift; sourceTree = "<group>"; };
+		223B26CC2B827D5700D3C9D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		223B26CE2B827D5700D3C9D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		223B26D82B82867100D3C9D8 /* NodeAdminWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NodeAdminWidgetExtension.entitlements; sourceTree = "<group>"; };
+		223B26D92B82875E00D3C9D8 /* NodeAdmin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NodeAdmin.entitlements; sourceTree = "<group>"; };
+		223B27042B837F6400D3C9D8 /* AppIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		22665BD72B78CD020068F83E /* PeerItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerItemView.swift; sourceTree = "<group>"; };
 		22665BD92B78CD980068F83E /* PeerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerDetailView.swift; sourceTree = "<group>"; };
 		22665BDB2B78D1470068F83E /* Channels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channels.swift; sourceTree = "<group>"; };
@@ -82,6 +132,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		223B26BA2B827D5600D3C9D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				223B26D72B82836800D3C9D8 /* Alamofire in Frameworks */,
+				223B26C22B827D5600D3C9D8 /* SwiftUI.framework in Frameworks */,
+				223B26C02B827D5600D3C9D8 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		22EF921D2B7820A500322F94 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,6 +153,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		223B26BE2B827D5600D3C9D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				223B26BF2B827D5600D3C9D8 /* WidgetKit.framework */,
+				223B26C12B827D5600D3C9D8 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		223B26C32B827D5600D3C9D8 /* NodeAdminWidget */ = {
+			isa = PBXGroup;
+			children = (
+				223B27042B837F6400D3C9D8 /* AppIntent.swift */,
+				223B26C42B827D5600D3C9D8 /* NodeAdminWidgetBundle.swift */,
+				223B26C82B827D5600D3C9D8 /* NodeAdminWidget.swift */,
+				223B26CC2B827D5700D3C9D8 /* Assets.xcassets */,
+				223B26CE2B827D5700D3C9D8 /* Info.plist */,
+			);
+			path = NodeAdminWidget;
+			sourceTree = "<group>";
+		};
 		22665BD62B78CB460068F83E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,7 +212,10 @@
 		22EF92172B7820A500322F94 = {
 			isa = PBXGroup;
 			children = (
+				223B26D82B82867100D3C9D8 /* NodeAdminWidgetExtension.entitlements */,
 				22EF92222B7820A500322F94 /* NodeAdmin */,
+				223B26C32B827D5600D3C9D8 /* NodeAdminWidget */,
+				223B26BE2B827D5600D3C9D8 /* Frameworks */,
 				22EF92212B7820A500322F94 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -140,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				22EF92202B7820A500322F94 /* NodeAdmin.app */,
+				223B26BD2B827D5600D3C9D8 /* NodeAdminWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,7 +232,7 @@
 		22EF92222B7820A500322F94 /* NodeAdmin */ = {
 			isa = PBXGroup;
 			children = (
-				2268C6AA2B802211005E930E /* Views */,
+				223B26D92B82875E00D3C9D8 /* NodeAdmin.entitlements */,
 				22EF923C2B782AC200322F94 /* Info.plist */,
 				22665BDF2B78D3350068F83E /* Channels */,
 				22EF923F2B782D4E00322F94 /* Home */,
@@ -155,6 +240,7 @@
 				229E00CD2B784DD900C8943B /* Peers */,
 				22EF92312B7820C800322F94 /* Services */,
 				22EF92422B782DAC00322F94 /* Settings */,
+				2268C6AA2B802211005E930E /* Views */,
 				22665BD62B78CB460068F83E /* ViewModels */,
 				22EF92232B7820A500322F94 /* NodeAdminApp.swift */,
 				22EF92252B7820A500322F94 /* ContentView.swift */,
@@ -225,6 +311,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		223B26BC2B827D5600D3C9D8 /* NodeAdminWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 223B26D52B827D5700D3C9D8 /* Build configuration list for PBXNativeTarget "NodeAdminWidgetExtension" */;
+			buildPhases = (
+				223B26B92B827D5600D3C9D8 /* Sources */,
+				223B26BA2B827D5600D3C9D8 /* Frameworks */,
+				223B26BB2B827D5600D3C9D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NodeAdminWidgetExtension;
+			packageProductDependencies = (
+				223B26D62B82836800D3C9D8 /* Alamofire */,
+			);
+			productName = NodeAdminWidgetExtension;
+			productReference = 223B26BD2B827D5600D3C9D8 /* NodeAdminWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		22EF921F2B7820A500322F94 /* NodeAdmin */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22EF922E2B7820A600322F94 /* Build configuration list for PBXNativeTarget "NodeAdmin" */;
@@ -232,10 +338,12 @@
 				22EF921C2B7820A500322F94 /* Sources */,
 				22EF921D2B7820A500322F94 /* Frameworks */,
 				22EF921E2B7820A500322F94 /* Resources */,
+				223B26D22B827D5700D3C9D8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				223B26D02B827D5700D3C9D8 /* PBXTargetDependency */,
 			);
 			name = NodeAdmin;
 			packageProductDependencies = (
@@ -255,6 +363,9 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					223B26BC2B827D5600D3C9D8 = {
+						CreatedOnToolsVersion = 15.2;
+					};
 					22EF921F2B7820A500322F94 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -277,11 +388,20 @@
 			projectRoot = "";
 			targets = (
 				22EF921F2B7820A500322F94 /* NodeAdmin */,
+				223B26BC2B827D5600D3C9D8 /* NodeAdminWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		223B26BB2B827D5600D3C9D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				223B26CD2B827D5700D3C9D8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		22EF921E2B7820A500322F94 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,6 +414,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		223B26B92B827D5600D3C9D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				223B26C92B827D5600D3C9D8 /* NodeAdminWidget.swift in Sources */,
+				223B26E12B833CEF00D3C9D8 /* Colors.swift in Sources */,
+				223B26E02B833CE200D3C9D8 /* Modifiers.swift in Sources */,
+				223B26E72B833F4A00D3C9D8 /* AccountAddresses.swift in Sources */,
+				223B27062B83846000D3C9D8 /* AppIntent.swift in Sources */,
+				223B26E42B833D3A00D3C9D8 /* SavedAccount.swift in Sources */,
+				223B26E82B833F5E00D3C9D8 /* Utils.swift in Sources */,
+				223B26E22B833D0B00D3C9D8 /* Wei.swift in Sources */,
+				223B26E32B833D2000D3C9D8 /* AccountBalances.swift in Sources */,
+				223B26C52B827D5600D3C9D8 /* NodeAdminWidgetBundle.swift in Sources */,
+				223B26E62B833EE700D3C9D8 /* AccountStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		22EF921C2B7820A500322F94 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -334,7 +472,81 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		223B26D02B827D5700D3C9D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 223B26BC2B827D5600D3C9D8 /* NodeAdminWidgetExtension */;
+			targetProxy = 223B26CF2B827D5700D3C9D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		223B26D32B827D5700D3C9D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = NodeAdminWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 11;
+				DEVELOPMENT_TEAM = 2CS9SQ5H88;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NodeAdminWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NodeAdminWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gidehu.NodeAdmin.NodeAdminWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		223B26D42B827D5700D3C9D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = NodeAdminWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 11;
+				DEVELOPMENT_TEAM = 2CS9SQ5H88;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NodeAdminWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NodeAdminWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = io.gidehu.NodeAdmin.NodeAdminWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		22EF922C2B7820A600322F94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -369,6 +581,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -432,6 +645,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -457,10 +671,12 @@
 		22EF922F2B7820A600322F94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NodeAdmin/NodeAdmin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"NodeAdmin/Preview Content\"";
 				DEVELOPMENT_TEAM = 2CS9SQ5H88;
 				ENABLE_PREVIEWS = YES;
@@ -475,7 +691,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = io.gidehu.NodeAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -491,10 +707,12 @@
 		22EF92302B7820A600322F94 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NodeAdmin/NodeAdmin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"NodeAdmin/Preview Content\"";
 				DEVELOPMENT_TEAM = 2CS9SQ5H88;
 				ENABLE_PREVIEWS = YES;
@@ -509,7 +727,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = io.gidehu.NodeAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -525,6 +743,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		223B26D52B827D5700D3C9D8 /* Build configuration list for PBXNativeTarget "NodeAdminWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				223B26D32B827D5700D3C9D8 /* Debug */,
+				223B26D42B827D5700D3C9D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		22EF921B2B7820A500322F94 /* Build configuration list for PBXProject "NodeAdmin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -557,6 +784,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		223B26D62B82836800D3C9D8 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22EF92342B78223800322F94 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		22EF92352B78223800322F94 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 22EF92342B78223800322F94 /* XCRemoteSwiftPackageReference "Alamofire" */;

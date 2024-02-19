@@ -64,35 +64,26 @@ struct PeersView: View {
     }
     
     var aliasesSheet: some View {
-        ZStack {
-            Color.yellowHOPR.ignoresSafeArea(.all)
-            VStack {
-                Text("Aliases")
-                    .font(.headline)
-                if let aliases = apiVM.aliases {
-                    ScrollView {
-                        ForEach(aliases.sorted(by: <), id: \.key) { alias, peerId in
-                            VStack(alignment: .leading) {
-                                Text(alias)
-                                    .fontWeight(.semibold)
-                                HStack {
-                                    Spacer()
-                                    Text(peerId)
-                                        .lineLimit(1)
-                                        .minimumScaleFactor(0.2)
-                                }
+        SheetView(title: "Aliases") {
+            if let aliases = apiVM.aliases {
+                ScrollView {
+                    ForEach(aliases.sorted(by: <), id: \.key) { alias, peerId in
+                        VStack(alignment: .leading) {
+                            Text(alias)
+                                .fontWeight(.semibold)
+                            HStack {
+                                Spacer()
+                                Text(peerId)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.2)
                             }
-                            .lightBluePanel
                         }
+                        .lightBluePanel
                     }
-                    .scrollIndicators(.never)
-                    .font(.footnote)
                 }
-//                Spacer()
+                .scrollIndicators(.never)
+                .font(.footnote)
             }
-            .foregroundStyle(._darkBlueHOPR)
-            .padding([.top, .horizontal])
-            .monospaced()
         }
     }
     

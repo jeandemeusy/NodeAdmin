@@ -2,7 +2,7 @@
 //  Colors.swift
 //  NodeAdmin
 //
-//  Created by Jean Demeusy on 2/12/24.
+//  Created by Jean Demeusy on 2/18/24.
 //
 
 import Foundation
@@ -61,9 +61,7 @@ extension ShapeStyle where Self == Color {
     static var lightForegroundDM: Color { Color(light: Color(white: 0.95), dark: ._darkBlueHOPR) }
     static var lightForegroundSecondaryDM: Color { Color(light: ._darkBlueHOPR, dark: Color(white: 0.2)) }
     static var sheetBackgroundDM: Color { Color(light: ._yellowHOPR, dark: Color(white: 0.05))}
-    static var lightBackgroundDM: Color { Color(light: Color(white: 1), dark: ._darkBlueHOPR) }
     
     static var grey: Color { Color(light: ._darkgray, dark: ._lightgray)}
-    static var lightgrey: Color { Color(light: Color(white: 0.9), dark: ._lightgray) }
     static var buttonBackground: Color { Color(light: Color(white:0.9), dark: Color(white:0.8)) }
 }
