@@ -38,6 +38,6 @@ struct PeerItemView: View {
     
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     PeerItemView(peer: NodePeer.preview, hasOutChannel: false)
 }

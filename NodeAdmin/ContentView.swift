@@ -21,13 +21,17 @@ struct ContentView: View {
                 .tabItem { Label("Peers", systemImage: "person.2.wave.2.fill")}
                 .tag(1)
             
+//            InboxView()
+//                .tabItem { Label("Inbox", systemImage: "tray.full.fill")}
+//                .tag(2)
+            
             ChannelsView()
                 .tabItem { Label("Channels", systemImage: "arrow.triangle.swap")}
-                .tag(2)
+                .tag(3)
             
             SettingsView()
                 .tabItem { Label("Settings", systemImage: "gear") }
-                .tag(3)
+                .tag(4)
         }
     }
 }

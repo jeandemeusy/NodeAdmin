@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220771182B8410A0009D7294 /* MessagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220771172B8410A0009D7294 /* MessagesStore.swift */; };
+		2207711A2B8414B1009D7294 /* GreyButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220771192B8414B1009D7294 /* GreyButtonView.swift */; };
+		2207711C2B8414FD009D7294 /* DetailListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207711B2B8414FD009D7294 /* DetailListItem.swift */; };
+		220771232B84B302009D7294 /* NodeAdminFocusWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207711F2B84B22C009D7294 /* NodeAdminFocusWidget.swift */; };
+		220771242B84B310009D7294 /* WidgetUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220771212B84B2A9009D7294 /* WidgetUtils.swift */; };
+		220771282B84B353009D7294 /* PanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220771262B84B342009D7294 /* PanelView.swift */; };
+		2207712C2B84B422009D7294 /* SelectNodeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207712A2B84B404009D7294 /* SelectNodeIntent.swift */; };
+		2207712F2B84F487009D7294 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207712E2B84F487009D7294 /* InboxView.swift */; };
+		220771312B850E5F009D7294 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220771302B850E5F009D7294 /* Ticket.swift */; };
+		220771332B851CAB009D7294 /* ChannelDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220771322B851CAB009D7294 /* ChannelDetailView.swift */; };
+		220771352B851F6E009D7294 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220771342B851F6E009D7294 /* Image.swift */; };
 		222AF8332B7A3741005D46FF /* Wei.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222AF8322B7A3741005D46FF /* Wei.swift */; };
 		2235FCB42B7A1B2B0068F8F0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2235FCB32B7A1B2B0068F8F0 /* Colors.swift */; };
 		223B26C02B827D5600D3C9D8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223B26BF2B827D5600D3C9D8 /* WidgetKit.framework */; };
@@ -24,7 +35,7 @@
 		223B26E62B833EE700D3C9D8 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92322B78210100322F94 /* AccountStore.swift */; };
 		223B26E72B833F4A00D3C9D8 /* AccountAddresses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92382B78242200322F94 /* AccountAddresses.swift */; };
 		223B26E82B833F5E00D3C9D8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF923D2B782C1A00322F94 /* Utils.swift */; };
-		223B27062B83846000D3C9D8 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223B27042B837F6400D3C9D8 /* AppIntent.swift */; };
+		223B27062B83846000D3C9D8 /* SelectNodeAndAssetIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223B27042B837F6400D3C9D8 /* SelectNodeAndAssetIntent.swift */; };
 		22665BD82B78CD020068F83E /* PeerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22665BD72B78CD020068F83E /* PeerItemView.swift */; };
 		22665BDA2B78CD980068F83E /* PeerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22665BD92B78CD980068F83E /* PeerDetailView.swift */; };
 		22665BDC2B78D1470068F83E /* Channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22665BDB2B78D1470068F83E /* Channels.swift */; };
@@ -47,6 +58,9 @@
 		229E00D32B7855CE00C8943B /* TicketsStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00D22B7855CE00C8943B /* TicketsStatistics.swift */; };
 		229E00D52B78566B00C8943B /* TicketsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00D42B78566B00C8943B /* TicketsStore.swift */; };
 		229E00D72B7856E500C8943B /* APIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E00D62B7856E500C8943B /* APIViewModel.swift */; };
+		22EB785B2B83A87D00966FAF /* SectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB785A2B83A87D00966FAF /* SectionTitle.swift */; };
+		22EB785C2B83A89200966FAF /* SectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB785A2B83A87D00966FAF /* SectionTitle.swift */; };
+		22EB785E2B83A8A300966FAF /* LightBlueTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB785D2B83A8A300966FAF /* LightBlueTile.swift */; };
 		22EDF3262B7BA61A0068DD43 /* ChannelsPostChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EDF3252B7BA61A0068DD43 /* ChannelsPostChannel.swift */; };
 		22EF92242B7820A500322F94 /* NodeAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92232B7820A500322F94 /* NodeAdminApp.swift */; };
 		22EF92262B7820A500322F94 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF92252B7820A500322F94 /* ContentView.swift */; };
@@ -84,6 +98,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		220771172B8410A0009D7294 /* MessagesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesStore.swift; sourceTree = "<group>"; };
+		220771192B8414B1009D7294 /* GreyButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreyButtonView.swift; sourceTree = "<group>"; };
+		2207711B2B8414FD009D7294 /* DetailListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListItem.swift; sourceTree = "<group>"; };
+		2207711F2B84B22C009D7294 /* NodeAdminFocusWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeAdminFocusWidget.swift; sourceTree = "<group>"; };
+		220771212B84B2A9009D7294 /* WidgetUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetUtils.swift; sourceTree = "<group>"; };
+		220771262B84B342009D7294 /* PanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelView.swift; sourceTree = "<group>"; };
+		2207712A2B84B404009D7294 /* SelectNodeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectNodeIntent.swift; sourceTree = "<group>"; };
+		2207712E2B84F487009D7294 /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
+		220771302B850E5F009D7294 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
+		220771322B851CAB009D7294 /* ChannelDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDetailView.swift; sourceTree = "<group>"; };
+		220771342B851F6E009D7294 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		222AF8322B7A3741005D46FF /* Wei.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wei.swift; sourceTree = "<group>"; };
 		2235FCB32B7A1B2B0068F8F0 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		223B26BD2B827D5600D3C9D8 /* NodeAdminWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NodeAdminWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +120,7 @@
 		223B26CE2B827D5700D3C9D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		223B26D82B82867100D3C9D8 /* NodeAdminWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NodeAdminWidgetExtension.entitlements; sourceTree = "<group>"; };
 		223B26D92B82875E00D3C9D8 /* NodeAdmin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NodeAdmin.entitlements; sourceTree = "<group>"; };
-		223B27042B837F6400D3C9D8 /* AppIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		223B27042B837F6400D3C9D8 /* SelectNodeAndAssetIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectNodeAndAssetIntent.swift; sourceTree = "<group>"; };
 		22665BD72B78CD020068F83E /* PeerItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerItemView.swift; sourceTree = "<group>"; };
 		22665BD92B78CD980068F83E /* PeerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerDetailView.swift; sourceTree = "<group>"; };
 		22665BDB2B78D1470068F83E /* Channels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channels.swift; sourceTree = "<group>"; };
@@ -118,6 +143,8 @@
 		229E00D22B7855CE00C8943B /* TicketsStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsStatistics.swift; sourceTree = "<group>"; };
 		229E00D42B78566B00C8943B /* TicketsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsStore.swift; sourceTree = "<group>"; };
 		229E00D62B7856E500C8943B /* APIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIViewModel.swift; sourceTree = "<group>"; };
+		22EB785A2B83A87D00966FAF /* SectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitle.swift; sourceTree = "<group>"; };
+		22EB785D2B83A8A300966FAF /* LightBlueTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightBlueTile.swift; sourceTree = "<group>"; };
 		22EDF3252B7BA61A0068DD43 /* ChannelsPostChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsPostChannel.swift; sourceTree = "<group>"; };
 		22EF92202B7820A500322F94 /* NodeAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NodeAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22EF92232B7820A500322F94 /* NodeAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeAdminApp.swift; sourceTree = "<group>"; };
@@ -153,6 +180,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220771252B84B330009D7294 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				220771262B84B342009D7294 /* PanelView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		220771292B84B3F2009D7294 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				223B27042B837F6400D3C9D8 /* SelectNodeAndAssetIntent.swift */,
+				2207712A2B84B404009D7294 /* SelectNodeIntent.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+		2207712D2B84F472009D7294 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				2207712E2B84F487009D7294 /* InboxView.swift */,
+			);
+			path = Inbox;
+			sourceTree = "<group>";
+		};
 		223B26BE2B827D5600D3C9D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,11 +217,14 @@
 		223B26C32B827D5600D3C9D8 /* NodeAdminWidget */ = {
 			isa = PBXGroup;
 			children = (
-				223B27042B837F6400D3C9D8 /* AppIntent.swift */,
+				220771292B84B3F2009D7294 /* Intents */,
+				220771252B84B330009D7294 /* Views */,
 				223B26C42B827D5600D3C9D8 /* NodeAdminWidgetBundle.swift */,
 				223B26C82B827D5600D3C9D8 /* NodeAdminWidget.swift */,
+				2207711F2B84B22C009D7294 /* NodeAdminFocusWidget.swift */,
 				223B26CC2B827D5700D3C9D8 /* Assets.xcassets */,
 				223B26CE2B827D5700D3C9D8 /* Info.plist */,
+				220771212B84B2A9009D7294 /* WidgetUtils.swift */,
 			);
 			path = NodeAdminWidget;
 			sourceTree = "<group>";
@@ -187,6 +242,7 @@
 			children = (
 				22665BE02B78D3A70068F83E /* ChannelsView.swift */,
 				22665BE42B78D6390068F83E /* ChannelItemView.swift */,
+				220771322B851CAB009D7294 /* ChannelDetailView.swift */,
 			);
 			path = Channels;
 			sourceTree = "<group>";
@@ -194,7 +250,11 @@
 		2268C6AA2B802211005E930E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2207711B2B8414FD009D7294 /* DetailListItem.swift */,
+				220771192B8414B1009D7294 /* GreyButtonView.swift */,
 				2268C6AB2B80221C005E930E /* SheetView.swift */,
+				22EB785A2B83A87D00966FAF /* SectionTitle.swift */,
+				22EB785D2B83A8A300966FAF /* LightBlueTile.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,16 +296,19 @@
 				22EF923C2B782AC200322F94 /* Info.plist */,
 				22665BDF2B78D3350068F83E /* Channels */,
 				22EF923F2B782D4E00322F94 /* Home */,
+				2207712D2B84F472009D7294 /* Inbox */,
 				22EF92372B78241600322F94 /* Models */,
 				229E00CD2B784DD900C8943B /* Peers */,
 				22EF92312B7820C800322F94 /* Services */,
 				22EF92422B782DAC00322F94 /* Settings */,
-				2268C6AA2B802211005E930E /* Views */,
 				22665BD62B78CB460068F83E /* ViewModels */,
+				2268C6AA2B802211005E930E /* Views */,
 				22EF92232B7820A500322F94 /* NodeAdminApp.swift */,
 				22EF92252B7820A500322F94 /* ContentView.swift */,
 				2235FCB32B7A1B2B0068F8F0 /* Colors.swift */,
+				220771342B851F6E009D7294 /* Image.swift */,
 				229E00C32B78411A00C8943B /* Modifiers.swift */,
+				22EF923D2B782C1A00322F94 /* Utils.swift */,
 				22EF92272B7820A600322F94 /* Assets.xcassets */,
 				22EF92292B7820A600322F94 /* Preview Content */,
 			);
@@ -269,7 +332,7 @@
 				229E00C52B7842F100C8943B /* NodeStore.swift */,
 				22874B352B7ABE0700F7C601 /* PeersStore.swift */,
 				229E00D42B78566B00C8943B /* TicketsStore.swift */,
-				22EF923D2B782C1A00322F94 /* Utils.swift */,
+				220771172B8410A0009D7294 /* MessagesStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -286,8 +349,9 @@
 				229E00D02B78522400C8943B /* NodeInfo.swift */,
 				22874B372B7ABE6100F7C601 /* PeersPing.swift */,
 				229E00D22B7855CE00C8943B /* TicketsStatistics.swift */,
-				222AF8322B7A3741005D46FF /* Wei.swift */,
+				220771302B850E5F009D7294 /* Ticket.swift */,
 				2268C6A82B800F2A005E930E /* SavedAccount.swift */,
+				222AF8322B7A3741005D46FF /* Wei.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -421,11 +485,16 @@
 				223B26C92B827D5600D3C9D8 /* NodeAdminWidget.swift in Sources */,
 				223B26E12B833CEF00D3C9D8 /* Colors.swift in Sources */,
 				223B26E02B833CE200D3C9D8 /* Modifiers.swift in Sources */,
+				220771242B84B310009D7294 /* WidgetUtils.swift in Sources */,
 				223B26E72B833F4A00D3C9D8 /* AccountAddresses.swift in Sources */,
-				223B27062B83846000D3C9D8 /* AppIntent.swift in Sources */,
+				223B27062B83846000D3C9D8 /* SelectNodeAndAssetIntent.swift in Sources */,
+				220771232B84B302009D7294 /* NodeAdminFocusWidget.swift in Sources */,
 				223B26E42B833D3A00D3C9D8 /* SavedAccount.swift in Sources */,
 				223B26E82B833F5E00D3C9D8 /* Utils.swift in Sources */,
+				2207712C2B84B422009D7294 /* SelectNodeIntent.swift in Sources */,
+				220771282B84B353009D7294 /* PanelView.swift in Sources */,
 				223B26E22B833D0B00D3C9D8 /* Wei.swift in Sources */,
+				22EB785C2B83A89200966FAF /* SectionTitle.swift in Sources */,
 				223B26E32B833D2000D3C9D8 /* AccountBalances.swift in Sources */,
 				223B26C52B827D5600D3C9D8 /* NodeAdminWidgetBundle.swift in Sources */,
 				223B26E62B833EE700D3C9D8 /* AccountStore.swift in Sources */,
@@ -440,6 +509,7 @@
 				22EF92332B78210100322F94 /* AccountStore.swift in Sources */,
 				2268C6AC2B80221C005E930E /* SheetView.swift in Sources */,
 				22EF92442B782DB600322F94 /* SettingsView.swift in Sources */,
+				22EB785B2B83A87D00966FAF /* SectionTitle.swift in Sources */,
 				22874B382B7ABE6100F7C601 /* PeersPing.swift in Sources */,
 				229E00D72B7856E500C8943B /* APIViewModel.swift in Sources */,
 				22EF92262B7820A500322F94 /* ContentView.swift in Sources */,
@@ -447,6 +517,8 @@
 				22EDF3262B7BA61A0068DD43 /* ChannelsPostChannel.swift in Sources */,
 				229E00CF2B784DED00C8943B /* PeersView.swift in Sources */,
 				2268C6A92B800F2A005E930E /* SavedAccount.swift in Sources */,
+				220771352B851F6E009D7294 /* Image.swift in Sources */,
+				2207711C2B8414FD009D7294 /* DetailListItem.swift in Sources */,
 				229E00CC2B784C5E00C8943B /* NodePeers.swift in Sources */,
 				229E00D32B7855CE00C8943B /* TicketsStatistics.swift in Sources */,
 				229E00C22B78357E00C8943B /* AccountBalances.swift in Sources */,
@@ -454,19 +526,25 @@
 				22874B362B7ABE0700F7C601 /* PeersStore.swift in Sources */,
 				22EF92392B78242200322F94 /* AccountAddresses.swift in Sources */,
 				222AF8332B7A3741005D46FF /* Wei.swift in Sources */,
+				2207711A2B8414B1009D7294 /* GreyButtonView.swift in Sources */,
 				22EF92242B7820A500322F94 /* NodeAdminApp.swift in Sources */,
 				22665BDA2B78CD980068F83E /* PeerDetailView.swift in Sources */,
 				229E00D52B78566B00C8943B /* TicketsStore.swift in Sources */,
+				220771332B851CAB009D7294 /* ChannelDetailView.swift in Sources */,
+				2207712F2B84F487009D7294 /* InboxView.swift in Sources */,
 				229E00C82B78432F00C8943B /* NodeVersion.swift in Sources */,
+				220771182B8410A0009D7294 /* MessagesStore.swift in Sources */,
 				2235FCB42B7A1B2B0068F8F0 /* Colors.swift in Sources */,
 				229E00D12B78522400C8943B /* NodeInfo.swift in Sources */,
 				22665BDE2B78D2940068F83E /* ChannelsStore.swift in Sources */,
 				22665BDC2B78D1470068F83E /* Channels.swift in Sources */,
 				22EF923E2B782C1A00322F94 /* Utils.swift in Sources */,
 				22665BE12B78D3A70068F83E /* ChannelsView.swift in Sources */,
+				220771312B850E5F009D7294 /* Ticket.swift in Sources */,
 				22665BE52B78D6390068F83E /* ChannelItemView.swift in Sources */,
 				22665BE72B792D0A0068F83E /* HomeView.swift in Sources */,
 				229E00C62B7842F100C8943B /* NodeStore.swift in Sources */,
+				22EB785E2B83A8A300966FAF /* LightBlueTile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +566,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = NodeAdminWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 2CS9SQ5H88;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NodeAdminWidget/Info.plist;
@@ -521,7 +599,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = NodeAdminWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 2CS9SQ5H88;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NodeAdminWidget/Info.plist;
@@ -676,12 +754,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NodeAdmin/NodeAdmin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"NodeAdmin/Preview Content\"";
 				DEVELOPMENT_TEAM = 2CS9SQ5H88;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NodeAdmin/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -712,12 +791,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NodeAdmin/NodeAdmin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"NodeAdmin/Preview Content\"";
 				DEVELOPMENT_TEAM = 2CS9SQ5H88;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NodeAdmin/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

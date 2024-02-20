@@ -14,7 +14,10 @@ struct NodePeers: Codable {
     enum CodingKeys: String, CodingKey {
         case connected, announced
     }
-    
+}
+
+// MARK: Computed
+extension NodePeers {
     var numConnected: Int {
         return connected.count
     }
@@ -44,11 +47,10 @@ struct NodePeer: Codable {
         case version = "reportedVersion"
         case alias, channel
     }
-    
-    var shortPeerId: String {
-        return peerId.prefix(5) + "..." + peerId.suffix(5)
-    }
-    
+}
+
+// MARK: Computed
+extension NodePeer {
     var lastSeen: String {
         let date = Date(timeIntervalSince1970: TimeInterval(lastSeenInt/1000))
         let dateFormatter = DateFormatter()
@@ -62,10 +64,6 @@ struct NodePeer: Codable {
         }
         return peerId
     }
-    
-    static var preview: NodePeer {
-        return NodePeer(peerId: "12D3KooWCq6sfR5nvCxKE3opwLbJa2pMBDFgeKR6aapDsf3Wv5Ci", peerAddress: "0x8fbc1256c4b974eae65840aa24ea67731361be56", multiAddr: "/ip4/173.249.26.138/tcp/9091", heartbeats: Heartbeats.preview, lastSeenInt: 1707644493238, quality: 1, backoff: 2, isNew: false, version: "2.0.7")
-    }
 }
 
 struct Heartbeats: Codable {
@@ -75,8 +73,17 @@ struct Heartbeats: Codable {
     enum CodingKeys: String, CodingKey {
         case sent, success
     }
-    
+}
+
+// MARK: Previews
+extension Heartbeats {
     static var preview: Heartbeats {
         return Heartbeats(sent: 3088, success: 3084)
+    }
+}
+
+extension NodePeer {
+    static var preview: NodePeer {
+        return NodePeer(peerId: "12D3KooWCq6sfR5nvCxKE3opwLbJa2pMBDFgeKR6aapDsf3Wv5Ci", peerAddress: "0x8fbc1256c4b974eae65840aa24ea67731361be56", multiAddr: "/ip4/173.249.26.138/tcp/9091", heartbeats: Heartbeats.preview, lastSeenInt: 1707644493238, quality: 1, backoff: 2, isNew: false, version: "2.0.7")
     }
 }

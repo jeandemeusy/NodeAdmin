@@ -9,36 +9,21 @@ import WidgetKit
 import SwiftUI
 import Alamofire
 
-struct BalancesFetcher {
-    
-    static func getSavedAccounts() -> [SavedAccount] {
-        var data = [SavedAccount]()
-        if let savedData = UserDefaults.group!.object(forKey: "credentials") as? Data {
-            do {
-                data = try JSONDecoder().decode([SavedAccount].self, from: savedData)
-            } catch {
-                // Failed to convert Data to SavedAccount
-            }
-        }
-        return data
-    }
-}
-
 
 struct NodeProvider: AppIntentTimelineProvider {
     typealias Entry = BalanceEntry
-    typealias Intent = ConfigurationAppIntent
+    typealias Intent = SelectNodeIntent
     
     func placeholder(in context: Context) -> BalanceEntry {
         return BalanceEntry(date: Date(), account: .preview, balances: AccountBalances.preview)
     }
     
-    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> BalanceEntry {
+    func snapshot(for configuration: SelectNodeIntent, in context: Context) async -> BalanceEntry {
         return BalanceEntry(date: Date(), account: .preview, balances: AccountBalances.preview)
     }
     
-    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<BalanceEntry> {
-        let accounts = BalancesFetcher.getSavedAccounts()
+    func timeline(for configuration: SelectNodeIntent, in context: Context) async -> Timeline<BalanceEntry> {
+        let accounts = getSavedAccounts()
         let account = accounts.filter({ $0.nickname == configuration.selectedNode }).first
         
         let nextUpdate = Calendar.current.date(byAdding: DateComponents(minute: 30), to: Date())!
@@ -77,76 +62,8 @@ struct NodeProvider: AppIntentTimelineProvider {
     }
 }
 
-//struct Provider: TimelineProvider {
-//    func placeholder(in context: Context) -> BalanceEntry {
-//        return BalanceEntry(date: Date(), account: .preview, balances: AccountBalances.preview)
-//    }
-//    
-//    func getSnapshot(in context: Context, completion: @escaping (BalanceEntry) -> Void) {
-//        let entry = BalanceEntry(date: Date(), account: .preview, balances: AccountBalances.preview)
-//        
-//        completion(entry)
-//    }
-//    
-//    func getTimeline(in context: Context, completion: @escaping (Timeline<BalanceEntry>) -> Void) {
-//        Task {
-//            let account = BalancesFetcher.getSavedAccounts().first
-//            
-//            let nextUpdate = Calendar.current.date(byAdding: DateComponents(minute: 30), to: Date())!
-//            var entry = BalanceEntry(date: Date(), account: account, balances: AccountBalances.null)
-//            var timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
-//
-//            if let account = account {
-//                AccountStore.shared.GET_balances(for: account.host, key: account.token) { result in
-//                    switch result {
-//                    case .success(let response):
-//                        entry = BalanceEntry(date: Date(), account: account, balances: response)
-//                        timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
-//                        completion(timeline)
-//
-//                    case .failure(let error):
-//                        debugPrint(error)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
 
-struct BalanceEntry: TimelineEntry, Decodable {
-    let date: Date
-    let account: SavedAccount?
-    let balances: AccountBalances?
-}
-
-struct PanelView: View {
-    let line1: String
-    let line2: String
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(line1)
-                .bold()
-            
-            HStack {
-                Spacer()
-                Text(line2)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.9)
-                    .fontWeight(.semibold)
-            }
-        }
-        .font(.caption)
-        .monospaced()
-        .padding(5)
-        .foregroundStyle(._darkBlueHOPR)
-        .background(.lightgrey)
-        .clipShape(.rect(cornerRadius: 10))
-
-    }
-}
-
-struct NodeAdminWidgetEntryView : View {
+struct SmallNodeAdminWidgetEntryView : View {
     let entry: BalanceEntry
     
     var body: some View {
@@ -180,27 +97,97 @@ struct NodeAdminWidgetEntryView : View {
     }
 }
 
-struct NodeAdminWidget: Widget {
+struct LargeNodeAdminWidgetEntryView : View {
+    let entry: BalanceEntry
+    
+    var body: some View {
+        VStack(spacing:2) {
+            HStack {
+                Circle()
+                    .foregroundStyle(._yellowHOPR)
+                    .frame(maxHeight: 30)
+                Spacer()
+                if let account = entry.account {
+                    Text(account.nickname)
+                        .font(.footnote)
+                        .fontWeight(.semibold)
+                        .monospaced()
+                        .foregroundStyle(.darkForegroundDM)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                }
+            }
+            if let balances = entry.balances {
+                VStack(spacing:10) {
+                    SectionTitle("Safe's assets")
+                    PanelView(line1: "HOPR", line2: balances.safeHopr.valueWithUnit)
+                    PanelView(line1: "Native", line2: balances.safeNative.valueWithUnit)
+                    
+                    SectionTitle("Node's assets")
+                    PanelView(line1: "HOPR", line2: balances.hopr.valueWithUnit)
+                    PanelView(line1: "Native", line2: balances.native.valueWithUnit)
+                }
+            }
+            Spacer()
+        }
+        .padding(.top, 10)
+        .padding(.horizontal, 10)
+    }
+}
+
+struct SmallNodeAdminWidget: Widget {
     let kind: String = "NodeAdminWidget"
 
     var body: some WidgetConfiguration {
         AppIntentConfiguration(
              kind: kind,
-             intent: ConfigurationAppIntent.self,
+             intent: SelectNodeIntent.self,
              provider: NodeProvider()) { entry in
-                 NodeAdminWidgetEntryView(entry: entry)
+                 SmallNodeAdminWidgetEntryView(entry: entry)
                      .containerBackground(.lightBackgroundDM, for: .widget)
          }
         
         .contentMarginsDisabled() // Here
         .configurationDisplayName("NodeAdmin Widget")
         .description("Node Admin for HOPR node monitoring")
-//        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
-#Preview(as: .systemSmall) {
-    NodeAdminWidget()
+struct LargeNodeAdminWidget: Widget {
+    let kind: String = "NodeAdminWidget"
+
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(
+             kind: kind,
+             intent: SelectNodeIntent.self,
+             provider: NodeProvider()) { entry in
+                 LargeNodeAdminWidgetEntryView(entry: entry)
+                     .containerBackground(.lightBackgroundDM, for: .widget)
+         }
+        
+        .contentMarginsDisabled() // Here
+        .configurationDisplayName("NodeAdmin Widget")
+        .description("Node Admin for HOPR node monitoring")
+        .supportedFamilies([.systemLarge])
+    }
+}
+
+#Preview("smallOverview", as: .systemSmall) {
+    SmallNodeAdminWidget()
+} timeline: {
+    BalanceEntry(date: .now, account: .preview, balances: AccountBalances.preview)
+}
+
+
+#Preview("mediumOverview", as: .systemMedium) {
+    SmallNodeAdminWidget()
+} timeline: {
+    BalanceEntry(date: .now, account: .preview, balances: AccountBalances.preview)
+}
+
+#Preview("largeOverview", as: .systemLarge) {
+    LargeNodeAdminWidget()
 } timeline: {
     BalanceEntry(date: .now, account: .preview, balances: AccountBalances.preview)
 }

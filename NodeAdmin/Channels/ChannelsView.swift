@@ -10,7 +10,6 @@ import SwiftUI
 struct ChannelsView: View {
     @EnvironmentObject var apiVM: APIVM
 
-    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -24,12 +23,21 @@ struct ChannelsView: View {
                     
                     SectionTitle("Outgoing")
                     ForEach(outgoingChannels, id: \.id) { channel in
-                        ChannelItemView(channel: channel)
+                        NavigationLink {
+                            ChannelDetailView(channel: channel, tickets: ticketsIn(channel))
+                        } label: {
+                            ChannelItemView(channel: channel, tickets: ticketsIn(channel))
+                        }
+                        
                     }
                     
                     SectionTitle("Incoming")
                     ForEach(incomingChannels, id: \.id) { channel in
-                        ChannelItemView(channel: channel)
+                        NavigationLink {
+                            ChannelDetailView(channel: channel, tickets: ticketsIn(channel))
+                        } label: {
+                            ChannelItemView(channel: channel, tickets: ticketsIn(channel))
+                        }
                     }
                 }
                 .padding(.horizontal, 10)
@@ -37,6 +45,10 @@ struct ChannelsView: View {
             .refreshable { await apiVM.getAll() }
             .navigationTitle("Channels")
         }
+    }
+    
+    func ticketsIn(_ channel: Channel) -> [Ticket] {
+        return apiVM.tickets.filter({ $0.channelId == channel.id })
     }
     
     

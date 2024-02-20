@@ -7,70 +7,7 @@
 
 import SwiftUI
 
-struct ListItem: View {
-    var name: String
-    var content: String?
-    
-    init(name: String, value: Int?) {
-        self.name = name
-        self.content = String(describing: value)
-    }
-    init(name: String, value: Double?) {
-        self.name = name
-        self.content = String(describing: value)
-    }
-    init(name: String, content: String?) {
-        self.name = name
-        self.content = content
-    }
-    
-    var body: some View {
-        HStack {
-            Text(name)
-                .fontWeight(.semibold)
-                .lineLimit(1)
-            Spacer()
-            Text(content ?? "-")
-            .monospaced(true)
-            .lineLimit(1)
-            .minimumScaleFactor(0.25)
-        }
-        .font(.footnote)
-        .foregroundStyle(.grey)
-    }
-}
 
-struct PeerActionButton: View {
-    let image: String
-    var text: String
-    var rotationDegrees: Double = 0.0
-    var verticalOffset: Double = 0.0
-    var action: (() -> Void)? = nil
-    
-    var body: some View {
-        Button {
-            if let action = action {
-                action()
-            }
-        } label: {
-            HStack {
-                Spacer()
-                VStack(spacing:2) {
-                    ZStack {
-                        Image(systemName: image)
-                        Image(image)
-                    }
-                    .rotationEffect(.degrees(rotationDegrees))
-                    .offset(x: 0, y: verticalOffset)
-                    
-                    Text(text)
-                }
-                Spacer()
-            }
-        }
-        .buttonStyle(.hopr)
-    }
-}
 
 struct PeerDetailView: View {
     @EnvironmentObject var apiVM: APIVM
@@ -78,81 +15,96 @@ struct PeerDetailView: View {
     @State private var showAddAliasSheet = false
     @State private var showRemoveAliasSheet = false
     @State private var showOpenChannelSheet = false
+    @State private var showSendMessageSheet = false
+    
     @State private var newAlias: String = ""
     @State private var newAmount: Double = 0.0
+    @State private var newMessage: String = ""
+    @State private var newMessageWordCount: Int = 0
 
     let peer: NodePeer
     var hasOutChannel: Bool = false
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack {
-                    ListItem(name: "ID", content: peer.peerId)
-                    ListItem(name: "Address", content: peer.peerAddress)
-                }
-                .lightBluePanel
-                
-                ListItem(name: "Multi-address", content: peer.multiAddr)
-                    .lightBluePanel
-                
-                HStack {
-                    HStack {
-                        ListItem(name: "Seen on", content: peer.lastSeen)
+            GeometryReader { geo in
+                ScrollView {
+                    VStack {
+                        DetailListItem(name: "ID", content: peer.peerId)
+                        DetailListItem(name: "Address", content: peer.peerAddress)
                     }
                     .lightBluePanel
-                    ListItem(name: "Version", content: "v\(peer.version)")
+                    
+                    DetailListItem(name: "Multi-address", content: peer.multiAddr)
                         .lightBluePanel
-                }
-                
-                SectionTitle("Connectivity")
-                HStack {
-                    PeerActionButton(image: "dot.radiowaves.up.forward", text: "Ping"      ) {
-                        apiVM.pingPeer(to: peer.peerId)
+                    
+                    HStack {
+                        HStack {
+                            DetailListItem(name: "Seen on", content: peer.lastSeen)
+                        }
+                        .lightBluePanel
+                        DetailListItem(name: "Version", content: "v\(peer.version)")
+                            .lightBluePanel
+                            .frame(width: 2*geo.size.width/5)
                     }
-                    PeerActionButton(image: "point.3.filled.connected.trianglepath.dotted", text: "Open channel", verticalOffset: -1) { showOpenChannelSheet = true }
-                        .disabled(hasOutChannel)
-                        
-                }
-                .padding(.horizontal)
-            
-                SectionTitle("Aliases")
-                HStack {
-                    PeerActionButton(image: "custom.person.text.rectangle.fill.badge.plus", text: "Add", verticalOffset: 1.5) { showAddAliasSheet.toggle() }
-                        .disabled(peer.alias != nil)
-                    PeerActionButton(image: "custom.person.text.rectangle.fill.badge.minus", text: "Remove", verticalOffset: 1.5) { showRemoveAliasSheet.toggle() }
-                        .disabled(peer.alias == nil)
-                }
-                .padding(.horizontal)
-                          
-                SectionTitle("Messages")
-                PeerActionButton(image: "envelope.fill", text: "Message", verticalOffset: -0.5)
-                    .disabled(true)
+                    
+                    SectionTitle("Connectivity")
+                    HStack {
+                        GreyButtonView(image: "dot.radiowaves.up.forward", text: "Ping") {
+                            apiVM.pingPeer(to: peer.peerId)
+                        }
+                        GreyButtonView(image: "custom.point.3.filled.connected.trianglepath.dotted.badge.plus", text: "Open channel") { showOpenChannelSheet = true }
+                            .disabled(hasOutChannel)
+                            
+                    }
                     .padding(.horizontal)
+                
+                    SectionTitle("Aliases")
+                    HStack {
+                        GreyButtonView(image: "custom.person.text.rectangle.fill.badge.plus", text: "Add") { showAddAliasSheet.toggle() }
+                            .disabled(peer.alias != nil)
+                        GreyButtonView(image: "custom.person.text.rectangle.fill.badge.minus", text: "Remove") { showRemoveAliasSheet.toggle() }
+                            .disabled(peer.alias == nil)
+                    }
+                    .padding(.horizontal)
+                              
+                    SectionTitle("Messages")
+                    GreyButtonView(image: "envelope.fill", text: "Message", verticalOffset: -0.5) {
+                        withAnimation(.easeInOut) {
+                            showSendMessageSheet.toggle()
+                        }
+                    }
+                    .padding(.horizontal)
+                }
             }
             .sheet(isPresented: $apiVM.pingResultFailed) {
                 pingResultFailed
-                    .presentationDetents([.height(200), .medium])
+                    .presentationDetents([.fraction(0.25), .medium])
                     .presentationDragIndicator(.visible)
             }
             .sheet(isPresented: $apiVM.pingResultAccessible) {
                 pingResultSuccess
-                    .presentationDetents([.height(200), .medium])
+                    .presentationDetents([.fraction(0.25), .medium])
                     .presentationDragIndicator(.visible)
             }
             .sheet(isPresented: $showAddAliasSheet) {
                 addAliasSheet
-                    .presentationDetents([.height(200), .medium])
+                    .presentationDetents([.fraction(0.25), .medium])
                     .presentationDragIndicator(.visible)
             }
             .sheet(isPresented: $showRemoveAliasSheet) {
                 removeAliasSheet
-                    .presentationDetents([.height(200), .medium])
+                    .presentationDetents([.fraction(0.25), .medium])
                     .presentationDragIndicator(.visible)
             }
             .sheet(isPresented: $showOpenChannelSheet) {
                 openChannelSheet
-                    .presentationDetents([.height(200), .medium])
+                    .presentationDetents([.fraction(0.25), .medium])
+                    .presentationDragIndicator(.visible)
+            }
+            .sheet(isPresented: $showSendMessageSheet) {
+                sendMessageSheet
+                    .presentationDetents([.fraction(0.25), .medium])
                     .presentationDragIndicator(.visible)
             }
             .padding(.horizontal, 10)
@@ -231,13 +183,46 @@ struct PeerDetailView: View {
             newAmount == 0
         }
     }
+    
+    var sendMessageSheet: some View {
+        SheetView(title: "Send message") {
+            VStack {
+                TextEditor(text: $newMessage)
+                    .foregroundColor(.grey)
+                    .font(.caption)
+                    .monospaced()
+                    .clipShape(.rect(cornerRadius: 10))
+                
+                Text("Word count: \(newMessageWordCount)")
+                    .hright
+                    .font(.footnote)
+            }
+            .onChange(of: newMessage) {
+                let words = newMessage.split { $0 == " " || $0.isNewline }
+                newMessageWordCount = words.count
+            }
+            
+        } dismissAction: {
+            newMessage = ""
+            newMessageWordCount = 0
+            showSendMessageSheet.toggle()
+        } confirmAction: {
+            apiVM.sendMessage(tag: 0, message: newMessage, to: peer.peerId)
+            newMessage = ""
+            newMessageWordCount = 0
+            showSendMessageSheet.toggle()
+        } disabledCondition: {
+            false
+        }
+
+    }
 }
 
-#Preview("Without channel") {
+#Preview("Without channel", traits: .sizeThatFitsLayout) {
     PeerDetailView(peer: NodePeer.preview, hasOutChannel: false)
         .environmentObject(APIVM())
 }
-#Preview("With channel") {    
+#Preview("With channel",  traits: .sizeThatFitsLayout) {    
     PeerDetailView(peer: NodePeer.preview, hasOutChannel: true)
         .environmentObject(APIVM())
 }

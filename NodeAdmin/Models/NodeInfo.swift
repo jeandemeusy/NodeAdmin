@@ -25,7 +25,10 @@ struct NodeInfo: Codable {
     enum CodingKeys: String, CodingKey {
         case network, announcedAddress, listeningAddress, chain, hoprToken, hoprChannels, hoprNetworkRegistry, nodeManagementModule, nodeSafe, isEligible, connectivityStatus, channelClosurePeriod
     }
-    
+}
+
+// MARK: Computer
+extension NodeInfo {
     var statusColor: Color {
         switch self.connectivityStatus {
         case "Green":

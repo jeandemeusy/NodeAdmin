@@ -21,7 +21,10 @@ struct AccountBalances: Codable {
         case weiSafeHopr = "safeHopr"
         case weiSafeHoprAllowance = "safeHoprAllowance"
     }
-    
+}
+
+// MARK: Tokens
+extension AccountBalances {
     var native: Wei {
         return Wei(weiNative, unit: "xDai")
     }
@@ -41,7 +44,10 @@ struct AccountBalances: Codable {
     var safeHoprAllowance: Wei {
         Wei(weiSafeHoprAllowance, unit: "wxHOPR")
     }
-    
+}
+
+// MARK: Previews
+extension AccountBalances {
     static var preview: AccountBalances {
         AccountBalances(weiNative: "100000000000000000", weiHopr: "0", weiSafeNative: "0", weiSafeHopr: "28487483734000000000000", weiSafeHoprAllowance: "43382928382")
     }

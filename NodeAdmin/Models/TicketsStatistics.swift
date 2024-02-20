@@ -30,7 +30,10 @@ struct TicketsStatistics: Codable {
         case rejected
         case weiRejectedValue = "rejectedValue"
     }
-    
+}
+
+// MARK: Tokens
+extension TicketsStatistics {
     var unredeemedValue: Wei {
         Wei(weiUnredeemedValue, unit: "wxHOPR")
     }

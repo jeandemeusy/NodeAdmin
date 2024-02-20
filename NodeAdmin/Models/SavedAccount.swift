@@ -8,7 +8,7 @@
 import Foundation
 import AppIntents
 
-struct SavedAccount: Codable, Hashable, AppEntity {
+struct SavedAccount: Codable, Hashable {
     let nickname: String
     let host: String
     let token: String
@@ -17,9 +17,11 @@ struct SavedAccount: Codable, Hashable, AppEntity {
         self.nickname = nickname
         self.host = host
         self.token = token
-        self.id = UUID().uuidString
     }
-    
+}
+
+// MARK: Previews
+extension SavedAccount {
     static var preview: SavedAccount {
         SavedAccount(nickname: "Node #1", host: "http://host:port", token: "^MyT0ken^")
     }
@@ -27,38 +29,4 @@ struct SavedAccount: Codable, Hashable, AppEntity {
     static var null: SavedAccount {
         SavedAccount(nickname: "-", host: "", token: "")
     }
-    
-    
-    // For intents
-    var id: String
-    static var defaultQuery = NodeQuery()
-    static var typeDisplayRepresentation: TypeDisplayRepresentation = "Node"
-    
-    var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(stringLiteral: nickname)
-        
-        
-    }
-}
-
-
-struct NodeQuery: EntityQuery {
-    func entities(for identifiers: [SavedAccount.ID]) -> [SavedAccount] {
-        if let savedData = UserDefaults.group!.object(forKey: "credentials") as? Data {
-            do {
-                 return try JSONDecoder().decode([SavedAccount].self, from: savedData)
-            } catch {
-                // Failed to convert Data to SavedAccount
-            }
-        }
-        return []
-   }
-   
-   func suggestedEntities() -> [SavedAccount] {
-       entities(for: [])
-   }
-   
-   func defaultResult() -> SavedAccount? {
-       suggestedEntities().first
-   }
 }

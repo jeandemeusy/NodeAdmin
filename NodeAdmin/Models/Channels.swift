@@ -16,7 +16,10 @@ struct Channels: Codable {
     enum CodingKeys: String, CodingKey {
         case incoming, outgoing, all
     }
-    
+}
+
+// MARK: Tokens
+extension Channels {
     var outgoingBalance: Double {
         return outgoing.map { Double($0.balance.reduced) }.reduce(0) { $0 + $1 }
     }
@@ -24,11 +27,15 @@ struct Channels: Codable {
     var outgoingBalanceString: String {
         return "\(outgoingBalance) wxHOPR"
     }
-    
+}
+
+// MARK: Previews
+extension Channels {
     static var preview: Channels {
         return Channels(incoming: [], outgoing: [Channel.preview], all: [])
     }
 }
+
 
 struct Channel: Codable {
     let type: String
@@ -42,12 +49,11 @@ struct Channel: Codable {
         case type, id, peerAddress, status
         case weiBalance = "balance"
     }
-    
-    var balance: Wei {
-        Wei(weiBalance, unit: "wxHOPR")
-    }
-    
-    var direction: String {
+}
+
+// MARK: Display
+extension Channel {
+    var directionImageName: String {
         switch type {
         case "incoming":
             return "arrow.down.left"
@@ -65,7 +71,7 @@ struct Channel: Codable {
         case "outgoing":
             return .green
         default:
-            return .black
+            return .primary
         }
     }
     
@@ -80,26 +86,38 @@ struct Channel: Codable {
         }
     }
     
-    
-    
     var displayName: String {
-        if let peer = peer {
-            if let alias = peer.alias  {
-                return alias
-            }
+        if peer?.alias == nil {
+            return peerAddress
         }
-        return peerAddress
+        return peer!.alias!
     }
     
-    var shortPeerAddress: String {
-        return peerAddress.prefix(14) + "..." + peerAddress.suffix(14)
+    var statusColor: Color {
+        switch status {
+        case "Open":
+            return .green
+        case "PendingToClose":
+            return .orange
+        case "Closed":
+            return .red
+        default:
+            return .primary
+        }
     }
-    
-    var shortId: String {
-        return id.prefix(14) + "..." + id.suffix(14)
+}
+
+// MARK: Tokens
+extension Channel {
+    var balance: Wei {
+        Wei(weiBalance, unit: "wxHOPR")
     }
-    
+}
+
+
+// MARK: Previews
+extension Channel {
     static var preview: Channel {
-        return Channel(type: "outgoing", id: "0x2b0a5fea18f7c055df8f659214eac642ac346a94a3fbe7c376827a8883aa8780", peerAddress: "0x5a5bf3d3ce59cd304f198b86c1a78adfadf31f83", status: "Open", weiBalance: "106520000000000000000")
+        return Channel(type: "outgoing", id: "0x2b0a5fea18f7c055df8f659214eac642ac346a94a3fbe7c376827a8883aa8780", peerAddress: "0x5a5bf3d3ce59cd304f198b86c1a78adfadf31f83", status: "Open", weiBalance: randomString(length: 21))
     }
 }

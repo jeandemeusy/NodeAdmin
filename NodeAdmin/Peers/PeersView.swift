@@ -71,12 +71,11 @@ struct PeersView: View {
                         VStack(alignment: .leading) {
                             Text(alias)
                                 .fontWeight(.semibold)
-                            HStack {
-                                Spacer()
-                                Text(peerId)
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.2)
-                            }
+    
+                            Text(peerId)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.2)
+                                .hright
                         }
                         .lightBluePanel
                     }

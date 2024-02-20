@@ -15,8 +15,25 @@ extension View {
         modifier(HCenterView())
     }
     
+    var hleft: some View {
+        modifier(HLeftView())
+    }
+    
+    
+    var hright: some View {
+        modifier(HRightView())
+    }
+    
     var vcenter: some View {
         modifier(VCenterView())
+    }
+    
+    var vtop: some View {
+        modifier(VTopView())
+    }
+    
+    var vbottom: some View {
+        modifier(VBottomView())
     }
     
     var lightBluePanel: some View {
@@ -47,6 +64,25 @@ struct HCenterView: ViewModifier {
     }
 }
 
+struct HLeftView: ViewModifier {
+    func body(content: Content) -> some View {
+        HStack {
+            content
+            Spacer()
+        }
+    }
+}
+
+struct HRightView: ViewModifier {
+    func body(content: Content) -> some View {
+        HStack {
+            Spacer()
+            content
+        }
+    }
+}
+
+
 
 struct VCenterView: ViewModifier {
     func body(content: Content) -> some View {
@@ -54,6 +90,24 @@ struct VCenterView: ViewModifier {
             Spacer()
             content
             Spacer()
+        }
+    }
+}
+
+struct VTopView: ViewModifier {
+    func body(content: Content) -> some View {
+        VStack {
+            content
+            Spacer()
+        }
+    }
+}
+
+struct VBottomView: ViewModifier {
+    func body(content: Content) -> some View {
+        VStack {
+            Spacer()
+            content
         }
     }
 }
@@ -68,10 +122,6 @@ struct LightBluePanelView: ViewModifier {
             .clipShape(.rect(cornerRadius: CGFloat(10)))
             .foregroundStyle(.grey)
             .monospaced()
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 10)
-//                    .stroke(.darkForegroundDM.opacity(0.1), lineWidth: 1)
-//            )
     }
 }
 
@@ -111,6 +161,7 @@ struct HOPRButtonStyle: ButtonStyle {
         }
     }
 }
+
 
 struct DismissButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {

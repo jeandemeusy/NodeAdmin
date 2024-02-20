@@ -11,8 +11,14 @@ struct Wei {
     let _value: String
     let unit: String
     
-    init(_ _value: String, unit: String) {
-        self._value = _value
+    
+    init(_ _strValue: String, unit: String) {
+        self._value = _strValue
+        self.unit = unit
+    }
+    
+    init(_ _intValue: Int, unit: String) {
+        self._value = String(_intValue)
         self.unit = unit
     }
     
@@ -21,7 +27,7 @@ struct Wei {
     }
     
     var value: String {
-        return "\(reduced.formatted())"
+        return "\(reduced.rounded(2).formatted())"
 
     }
     var valueWithUnit: String {

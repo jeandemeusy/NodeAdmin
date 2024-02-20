@@ -11,6 +11,8 @@ import SwiftUI
 @main
 struct NodeAdminWidgetBundle: WidgetBundle {
     var body: some Widget {
-        NodeAdminWidget()
+        SmallNodeAdminWidget()
+        SmallNodeAdminFocusWidget()
+        LargeNodeAdminWidget()
     }
 }

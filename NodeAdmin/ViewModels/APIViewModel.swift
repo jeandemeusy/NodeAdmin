@@ -24,6 +24,7 @@ class APIVM: ObservableObject {
     @Published var pingResultAccessible: Bool = false
     @Published var pingResultFailed: Bool = false
     
+    @Published var tickets: [Ticket] = []
     @Published var statistics: TicketsStatistics? = nil
     
     @Published var credential: SavedAccount? = nil
@@ -60,8 +61,22 @@ class APIVM: ObservableObject {
         return false
     }
     
-    func removeCredentialsEntry(for nickname: String, host: String, key: String) -> Bool {
-        return false
+    func removeCurrentCredentialsEntry() -> Bool {
+        var credentials = getCredentials()
+        
+        credentials.removeAll(where: { $0 == credential })
+        
+        do {
+            let encodedData = try JSONEncoder().encode(credentials)
+            UserDefaults.group!.set(encodedData, forKey: "credentials")
+            credential = credentials.first
+            
+            return true
+        }
+        catch {
+            // Failed to encode SavedAccount to Data
+            return false
+        }
     }
     
     func resetAll() {
@@ -74,6 +89,7 @@ class APIVM: ObservableObject {
         self.peers = nil
         self.info = nil
         self.pingResult = nil
+        self.tickets = []
         self.statistics = nil
     }
     
@@ -85,21 +101,18 @@ class APIVM: ObservableObject {
         self.getVersion()
         self.getInfo()
         self.getPeers()
+        self.getTickets()
         self.getStatistics()
     }
     
     func assignCredential() {
         if (credential == nil) {
-            credential = getCredentials().first
+            credential = getCredentials().randomElement()
         }
     }
 
-//   █████  ██      ██  █████  ███████ ███████ ███████
-//  ██   ██ ██      ██ ██   ██ ██      ██      ██
-//  ███████ ██      ██ ███████ ███████ █████   ███████
-//  ██   ██ ██      ██ ██   ██      ██ ██           ██
-//  ██   ██ ███████ ██ ██   ██ ███████ ███████ ███████
-    
+    // MARK: Aliases
+
     func getAliases() {
         AliasesStore.shared.GET_aliases(for: host, key: key) { result in
             switch result {
@@ -133,11 +146,7 @@ class APIVM: ObservableObject {
         }
     }
 
-//   █████   ██████  ██████  ██████  ██    ██ ███    ██ ████████
-//  ██   ██ ██      ██      ██    ██ ██    ██ ████   ██    ██
-//  ███████ ██      ██      ██    ██ ██    ██ ██ ██  ██    ██
-//  ██   ██ ██      ██      ██    ██ ██    ██ ██  ██ ██    ██
-//  ██   ██  ██████  ██████  ██████   ██████  ██   ████    ██
+    // MARK: Account
     
     func getAddresses() {
         AccountStore.shared.GET_addresses(for: host, key: key) { result in
@@ -161,11 +170,7 @@ class APIVM: ObservableObject {
         }
     }
     
-//   ██████ ██   ██  █████  ███    ██ ███    ██ ███████ ██      ███████
-//  ██      ██   ██ ██   ██ ████   ██ ████   ██ ██      ██      ██
-//  ██      ███████ ███████ ██ ██  ██ ██ ██  ██ █████   ██      ███████
-//  ██      ██   ██ ██   ██ ██  ██ ██ ██  ██ ██ ██      ██           ██
-//   ██████ ██   ██ ██   ██ ██   ████ ██   ████ ███████ ███████ ███████
+    // MARK: Channels
     
     func getChannels() {
         ChannelsStore.shared.GET_channels(for: host, key: key) { result in
@@ -190,11 +195,20 @@ class APIVM: ObservableObject {
         }
     }
     
-    //  ███    ██  ██████  ██████  ███████
-    //  ████   ██ ██    ██ ██   ██ ██
-    //  ██ ██  ██ ██    ██ ██   ██ █████
-    //  ██  ██ ██ ██    ██ ██   ██ ██
-    //  ██   ████  ██████  ██████  ███████
+    // MARK: Messages
+    
+    func sendMessage(tag: Int, message: String, to: String) {
+        MessagesStore.shared.POST_message(for: host, key: key, tag: tag, message: message, to: to) { result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
+    // MARK: Node
     
     func getVersion() {
         NodeStore.shared.GET_version(for: host, key: key) { result in
@@ -242,12 +256,19 @@ class APIVM: ObservableObject {
         }
     }
     
-//  ████████ ██  ██████ ██   ██ ███████ ████████ ███████
-//     ██    ██ ██      ██  ██  ██         ██    ██
-//     ██    ██ ██      █████   █████      ██    ███████
-//     ██    ██ ██      ██  ██  ██         ██         ██
-//     ██    ██  ██████ ██   ██ ███████    ██    ███████
+    // MARK: Tickets
     
+    func getTickets() {
+        TicketsStore.shared.GET_tickets(for: host, key: key) { result in
+            switch result {
+            case .success(let response):
+                self.tickets = response
+                debugPrint(response)
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
     func getStatistics() {
         TicketsStore.shared.GET_statistics(for: host, key: key) { result in
             switch result {

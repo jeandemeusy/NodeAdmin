@@ -11,6 +11,7 @@ struct SettingsView: View {
     @EnvironmentObject var apiVM: APIVM
     
     @State private var showAddAccountSheet: Bool = false
+    @State private var showRemoveAccountSheet: Bool = false
     @State private var newNodeNickname: String = ""
     @State private var newNodeHost: String = ""
     @State private var newNodeToken: String = ""
@@ -19,7 +20,6 @@ struct SettingsView: View {
         NavigationView {
             Form {
                 Section(header: Text("Credentials")) {
-                    
                     if let credentials = credentials {
                         Picker("Account", selection: $apiVM.credential) {
                             Text(" - ").tag(nil as SavedAccount?)
@@ -36,17 +36,32 @@ struct SettingsView: View {
                         }
                     }
                     
+                    Button {
+                        showAddAccountSheet.toggle()
+                    } label: {
+                        Text("Add account")
+                    }
+                    .buttonStyle(.automatic)
+                    .tint(.green)
+                
+                    if (credentials?.count ?? 0) > 0 {
                         Button {
-                            showAddAccountSheet.toggle()
+                            showRemoveAccountSheet.toggle()
                         } label: {
-                            Text("Add account")
+                            Text("Remove account")
                         }
                         .buttonStyle(.automatic)
-                        .tint(.green)
+                        .tint(.red)
                     }
+                }
                 .sheet(isPresented: $showAddAccountSheet) {
                     addAccountSheet
                         .presentationDetents([.fraction(0.35)])
+                        .presentationDragIndicator(.visible)
+                }
+                .sheet(isPresented: $showRemoveAccountSheet) {
+                    removeAccountSheet
+                        .presentationDetents([.fraction(0.25)])
                         .presentationDragIndicator(.visible)
                 }
             }
@@ -97,6 +112,19 @@ struct SettingsView: View {
             resetNewAccountVars()
         } disabledCondition: {
             newNodeNickname.isEmpty || newNodeHost.isEmpty || newNodeToken.isEmpty
+        }
+    }
+    
+    var removeAccountSheet: some View {
+        SheetView(title: "Remove account") {
+            Text("Are you sure you want to delete '\(apiVM.nickname)' account ?")
+                .font(.caption)
+                .multilineTextAlignment(.center)
+        } dismissAction: {
+            showRemoveAccountSheet.toggle()
+        } confirmAction: {
+            _ = apiVM.removeCurrentCredentialsEntry()
+            showRemoveAccountSheet.toggle()
         }
     }
     

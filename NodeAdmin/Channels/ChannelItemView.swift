@@ -9,42 +9,45 @@ import SwiftUI
 
 struct ChannelItemView: View {
     let channel: Channel
+    let tickets: [Ticket]
     
     var body: some View {
         HStack(spacing: 10) {
-            Image(systemName: channel.direction)
-                .foregroundStyle(channel.directionColor)
+            Image(systemName: channel.directionImageName)
+                .foregroundStyle(channel.status != "PendingToClose" ? channel.directionColor:.orange )
                 .bold()
+                .padding(1)
             
             VStack(alignment: .leading) {
+                Text(channel.displayName)
+                    .fontWeight(.semibold)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                    .hleft
+                
+                Text(channel.id)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                    .hright
+                
                 HStack {
-                    VStack(alignment: .leading) {
-                        HStack(spacing: 5) {
-                            Text(channel.directionPrefix)
-                            Text(channel.displayName)
-                                .fontWeight(.semibold)
-                        }
-                        .font(.caption)
-                        Text("id: \(channel.id)")
-                            .minimumScaleFactor(0.2)
-                    }
-                    Spacer()
-                }
-                HStack {
-                    Spacer()
                     Text(channel.balance.valueWithUnit)
-                        .font(.caption.weight(.semibold))
+                    Text("- \(tickets.value.valueWithUnit)")
+                        .opacity(0.5)
                 }
+                .font(.caption2.weight(.semibold))
+                .hright
             }
+            
+            Image(systemName: "chevron.right")
+
         }
         .lightBluePanel
         .font(.footnote)
-        .lineLimit(1)
-        .minimumScaleFactor(0.2)
     }
 }
 
 
-#Preview {
-    ChannelItemView(channel: Channel.preview)
+#Preview(traits: .sizeThatFitsLayout) {
+    ChannelItemView(channel: Channel.preview, tickets: [Ticket.preview])
 }

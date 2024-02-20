@@ -25,10 +25,7 @@ struct SheetView<Content: View>: View {
                 Divider()
 
                 content
-                
-                if dismissAction != nil || confirmAction != nil || footer != nil{
-                    Spacer()
-                }
+                    .vcenter
                 
                 if dismissAction != nil || confirmAction != nil {
                     HStack {
@@ -65,5 +62,13 @@ struct SheetView<Content: View>: View {
             .padding([.top, .horizontal])
             .monospaced()
         }
+    }
+}
+
+#Preview(traits: .sizeThatFitsLayout) {
+    SheetView(title: "Preview", footer: "Footer text") {
+        Text("Preview content")        
+    } disabledCondition: {
+        false
     }
 }
