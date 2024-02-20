@@ -263,7 +263,6 @@ class APIVM: ObservableObject {
             switch result {
             case .success(let response):
                 self.tickets = response
-                debugPrint(response)
             case .failure(let error):
                 debugPrint(error)
             }
